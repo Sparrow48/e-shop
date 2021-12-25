@@ -1,4 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
+import Menu from "./components/Menu";
 import Nav from "./components/Nav";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div>
       <Router>
         <Nav />
+        <Menu />
       </Router>
     </div>
   );
