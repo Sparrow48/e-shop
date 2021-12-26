@@ -19,7 +19,7 @@ function Nav() {
           <h1>Cart</h1>
           <Icon icon="bi:cart" color="gray" width="20" height="20" />
         </NavLink>
-        <NavLink className="flex space-x-1" to="/cart">
+        <NavLink className="flex space-x-1" to="/login">
           <h1>Login</h1>
           <Icon icon="clarity:login-line" color="gray" width="20" height="20" />
         </NavLink>

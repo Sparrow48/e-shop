@@ -11,7 +11,7 @@ function Hero() {
           praesentium asperiores suscipit vel eos neque quo delectus
           exercitationem ipsam accusamus sint voluptates. Nam, quos accusamus?
         </p>
-        <a to="/">
+        <a href="/">
           <h1 className="px-4 py-2 text-xl text-white bg-yellow-600 rounded hover:bg-yellow-500 w-fit">
             Shop Now
           </h1>
