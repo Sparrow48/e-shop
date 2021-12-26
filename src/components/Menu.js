@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import Logo from "./Logo";
 
 function Menu() {
   const [showMenu, setShowMenu] = useState(false);
@@ -11,25 +12,39 @@ function Menu() {
   };
 
   return (
-    <nav className="lg:hidden">
+    <div className="lg:hidden">
       {showMenu ? (
-        <div className="flex flex-row">
-          <div className="bg-gray-50 h-screen w-4/5 z-50">
-            <h1>e-Shop</h1>
-            <ul className="flex flex-col">
-              <NavLink to="/home">Home</NavLink>
-              <NavLink to="/about">About</NavLink>
-              <NavLink to="/product">Product</NavLink>
-            </ul>
+        <div className="">
+          <div className="flex flex-row">
+            <div className="w-4/5 ">
+              <div className="px-5">
+                <Logo />
+              </div>
+
+              <div className="z-50 h-screen px-10 text-xl bg-gray-50">
+                <ul className="flex flex-col">
+                  <NavLink onClick={toggle} to="/home">
+                    Home
+                  </NavLink>
+                  <NavLink onClick={toggle} to="/about">
+                    About
+                  </NavLink>
+                  <NavLink onClick={toggle} to="/product">
+                    Product
+                  </NavLink>
+                </ul>
+              </div>
+            </div>
+
+            <div
+              className="items-end w-2/5 h-screen bg-gray-700"
+              onClick={toggle}
+            ></div>
           </div>
-          <div
-            className="items-end bg-gray-700 w-1/5 h-screen"
-            onClick={toggle}
-          ></div>
         </div>
       ) : (
         <div className="flex flex-row justify-between px-5">
-          <h1>e-Shop</h1>
+          <Logo />
           <Icon
             icon="bx:bx-menu-alt-right"
             color="blue"
@@ -39,7 +54,7 @@ function Menu() {
           />
         </div>
       )}
-    </nav>
+    </div>
   );
 }
 
