@@ -26,10 +26,10 @@ function FeturedProducts() {
   // }, []);
   return (
     <section className="py-10 bg-slate-200">
-      <div className="mx-auto lg:max-w-6xl ">
+      <div className="max-w-2xl mx-auto lg:max-w-6xl ">
         <h1 className="text-3xl text-center ">Featured Products</h1>
         <p className="w-24 mx-auto border-b-4 border-yellow-600"></p>
-        <div className="flex justify-center py-24 space-x-20">
+        <div className="flex flex-col items-center justify-center py-16 space-y-12 sm:space-y-16 sm:py-24 lg:space-y-0 lg:space-x-20 lg:flex-row">
           <Product image={FP1} title="WorkPlace setup" price="17000" />
           <Product image={FP2} title="Comfort Sofa" price="4000" />
           <Product image={FP4} title="Meeting setup" price="20000" />

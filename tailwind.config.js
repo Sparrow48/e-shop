@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       spacing: {
         128: "32rem",
+        135: "40rem",
       },
       fontFamily: {
         logo: "'Aclonica', sans-serif",

@@ -3,10 +3,12 @@ import HeroImage from "../assets/hero.png";
 
 function Hero() {
   return (
-    <div className="grid items-center justify-center max-h-screen grid-cols-2 py-48 mx-auto gap-36 lg:max-w-6xl">
+    <div className="grid items-center justify-center max-h-screen px-10 py-24 mx-auto md:py-48 lg:px-0 lg:grid-cols-2 gap-36 lg:max-w-6xl">
       <div className="flex flex-col space-y-7">
-        <h1 className="text-5xl font-bold">Design Your Comfort Zone</h1>
-        <p className="text-xl text-gray-500">
+        <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
+          Design Your Comfort Zone
+        </h1>
+        <p className="text-sm text-gray-500 md:text-xl">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium,
           praesentium asperiores suscipit vel eos neque quo delectus
           exercitationem ipsam accusamus sint voluptates. Nam, quos accusamus?

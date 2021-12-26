@@ -17,8 +17,8 @@ function Menu() {
       {showMenu ? (
         <div className="">
           <div className="flex flex-row">
-            <div className="z-50 w-4/5 h-screen bg-gray-200">
-              <div className="px-5">
+            <div className="z-50 w-4/5 h-screen pt-5 bg-gray-200">
+              <div className="px-10">
                 <Logo />
               </div>
 
@@ -48,7 +48,7 @@ function Menu() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-row justify-between px-5">
+        <div className="flex flex-row justify-between px-10 pt-5">
           <Logo />
           <Icon
             icon="bx:bx-menu-alt-right"
