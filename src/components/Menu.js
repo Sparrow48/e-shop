@@ -5,6 +5,7 @@ import Logo from "./Logo";
 
 function Menu() {
   const [showMenu, setShowMenu] = useState(false);
+  const linkDesign = " my-3";
 
   const toggle = () => {
     setShowMenu(!showMenu);
@@ -16,20 +17,24 @@ function Menu() {
       {showMenu ? (
         <div className="">
           <div className="flex flex-row">
-            <div className="w-4/5 ">
+            <div className="z-50 w-4/5 h-screen bg-gray-200">
               <div className="px-5">
                 <Logo />
               </div>
 
-              <div className="z-50 h-screen px-10 text-xl bg-gray-50">
-                <ul className="flex flex-col">
-                  <NavLink onClick={toggle} to="/home">
+              <div className="px-10 pt-5 text-xl">
+                <ul className="flex flex-col items-center w-fit">
+                  <NavLink className={linkDesign} onClick={toggle} to="/home">
                     Home
                   </NavLink>
-                  <NavLink onClick={toggle} to="/about">
+                  <NavLink className={linkDesign} onClick={toggle} to="/about">
                     About
                   </NavLink>
-                  <NavLink onClick={toggle} to="/product">
+                  <NavLink
+                    className={linkDesign}
+                    onClick={toggle}
+                    to="/product"
+                  >
                     Product
                   </NavLink>
                 </ul>

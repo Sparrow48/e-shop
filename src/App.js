@@ -1,4 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
+import Hero from "./components/Hero";
 import Menu from "./components/Menu";
 import Nav from "./components/Nav";
 
@@ -8,6 +9,7 @@ function App() {
       <Router>
         <Nav />
         <Menu />
+        <Hero />
       </Router>
     </div>
   );
