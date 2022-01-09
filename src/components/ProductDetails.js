@@ -11,8 +11,8 @@ function ProductDetails() {
 
   const increment = () => {
     const updateValue = value + 1;
-    if (updateValue > 6) {
-      updateValue = 6;
+    if (updateValue > product.Available) {
+      updateValue = product.Available;
     }
     setvalue(updateValue);
   };
@@ -28,9 +28,9 @@ function ProductDetails() {
     dispatch(
       cartActions.addToCard({
         id: "a1",
-        title: " sofa",
+        title: product.title,
         value,
-        price: 7500,
+        price: product.price,
       })
     );
   };

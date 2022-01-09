@@ -34,8 +34,10 @@ function FeturedProducts() {
           <Product image={FP2} title="Comfort Sofa" price="4000" />
           <Product image={FP4} title="Meeting setup" price="20000" />
         </div>
-        <div className="px-3 py-2 mx-auto text-center text-white bg-yellow-600 rounded w-fit hover:bg-yellow-500 hover:text-gray-800">
-          <a href="/products">All Products</a>
+        <div className="lg:pt-12">
+          <div className="px-3 py-2 mx-auto text-center text-white bg-yellow-600 rounded w-fit hover:bg-yellow-500 hover:text-gray-800">
+            <a href="/products">All Products</a>
+          </div>
         </div>
       </div>
     </section>

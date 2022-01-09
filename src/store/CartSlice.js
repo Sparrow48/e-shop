@@ -5,24 +5,29 @@ const CartSlice = createSlice({
   initialState: {
     items: JSON.parse(localStorage.getItem("cart") || "[]"),
     totalQuantity: JSON.parse(localStorage.getItem("total") || "0"),
+    totalPrice: JSON.parse(localStorage.getItem("totalPrice") || "0"),
   },
   reducers: {
     addToCard(state, action) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
-      state.totalQuantity = newItem.value;
+      state.totalQuantity = state.totalQuantity + newItem.value;
+      state.totalPrice = state.totalPrice + newItem.value * newItem.price;
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
           price: newItem.price,
           name: newItem.title,
+          subTotal: newItem.value * newItem.price,
         });
       } else {
-        existingItem.totalPrice = existingItem.totalPrice + newItem.price;
+        existingItem.subTotal =
+          existingItem.subTotal + newItem.value * newItem.price;
       }
 
       localStorage.setItem("cart", JSON.stringify(state.items));
       localStorage.setItem("total", JSON.stringify(state.totalQuantity));
+      localStorage.setItem("totalPrice", JSON.stringify(state.totalPrice));
     },
   },
 });
