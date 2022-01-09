@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import Logo from "./Logo";
 
 function Nav() {
+  const cartQuantity = useSelector((state) => state.cart.totalQuantity);
   return (
     <div className="justify-between hidden py-5 mx-auto text-gray-600 lg:flex lg:max-w-6xl">
       <div>
@@ -28,7 +30,7 @@ function Nav() {
                 height="20"
               />
               <span className="absolute flex items-center justify-center w-4 h-4 p-3 text-white transition-all duration-300 bg-yellow-600 rounded-full group-hover:bg-gray-800 top-10px right-16px ">
-                1
+                {cartQuantity}
               </span>
             </span>
           </div>

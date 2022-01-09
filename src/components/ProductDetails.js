@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import sofa from "../assets/FP2.png";
+import { cartActions } from "../store/CartSlice";
 
 function ProductDetails() {
   const [value, setvalue] = useState(1);
+  const dispatch = useDispatch();
 
   // const [products, setProducts] = useState([]);
   // useEffect(() => {
@@ -21,6 +24,9 @@ function ProductDetails() {
 
   const increment = () => {
     const updateValue = value + 1;
+    if (updateValue > 6) {
+      updateValue = 6;
+    }
     setvalue(updateValue);
   };
   const decrement = () => {
@@ -31,7 +37,13 @@ function ProductDetails() {
     setvalue(updateValue);
   };
 
-  const addTocard = () => {};
+  const addTocard = () => {
+    dispatch(
+      cartActions.addToCard({
+        value,
+      })
+    );
+  };
 
   return (
     // <div>
@@ -42,14 +54,14 @@ function ProductDetails() {
     //     ))}
     // </div>
 
-    <div className="max-w-2xl py-16 mx-auto lg:max-w-6xl lg:grid lg:grid-cols-2 lg:gap-8">
-      <div>
-        <img src={sofa} alt="soofa" />
+    <div className="max-w-2xl py-16 mx-auto lg:max-w-6xl lg:grid lg:grid-cols-2 lg:gap-10">
+      <div className="mt-10">
+        <img className="rounded" src={sofa} alt="soofa" />
       </div>
       <div className="flex flex-col space-y-5">
-        <h1 className="text-3xl font-bold">Sofa</h1>
+        <h1 className="text-4xl font-bold">Sofa</h1>
         <h2 className="text-xl text-yellow-600">7500 tk</h2>
-        <p>
+        <p className="leading-8 text-gray-600">
           Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore
           etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat,
           authentic chillwave trust fund. Viral typewriter fingerstache
@@ -61,7 +73,8 @@ function ProductDetails() {
         <p>Category : Living Room</p>
         <p>Brand : Marcos</p>
         <p>SKU : Recs5BSVU3qQrOj4E</p>
-        <div className="flex text-3xl font-bold space-x-7">
+        <p className="border-b-2 border-gray-400"></p>
+        <div className="flex ml-2 text-3xl font-bold space-x-7">
           <button onClick={decrement}>-</button>
           <h2>{value}</h2>
           <button onClick={increment}>+</button>
