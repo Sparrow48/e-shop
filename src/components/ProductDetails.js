@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import sofa from "../assets/FP2.png";
 import { cartActions } from "../store/CartSlice";
 
 function ProductDetails() {
   const [value, setvalue] = useState(1);
   const dispatch = useDispatch();
-
-  // const [products, setProducts] = useState([]);
-  // useEffect(() => {
-  //   try {
-  //     const getProducts = async () => {
-  //       const response = await fetch("https://fakestoreapi.com/products/");
-  //       const data = await response.json();
-  //       setProducts(data);
-  //     };
-
-  //     getProducts();
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }, []);
+  const products = useSelector((state) => state.product.products);
+  const product = products["product1"];
 
   const increment = () => {
     const updateValue = value + 1;
@@ -40,53 +27,45 @@ function ProductDetails() {
   const addTocard = () => {
     dispatch(
       cartActions.addToCard({
+        id: "a1",
+        title: " sofa",
         value,
+        price: 7500,
       })
     );
   };
 
   return (
-    // <div>
-    //   {products
-    //     .filter((product) => product.id === 1)
-    //     .map((product) => (
-    //       <img key={product.id} src={product.image} />
-    //     ))}
-    // </div>
-
-    <div className="max-w-2xl py-16 mx-auto lg:max-w-6xl lg:grid lg:grid-cols-2 lg:gap-10">
-      <div className="mt-10">
-        <img className="rounded" src={sofa} alt="soofa" />
-      </div>
-      <div className="flex flex-col space-y-5">
-        <h1 className="text-4xl font-bold">Sofa</h1>
-        <h2 className="text-xl text-yellow-600">7500 tk</h2>
-        <p className="leading-8 text-gray-600">
-          Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore
-          etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat,
-          authentic chillwave trust fund. Viral typewriter fingerstache
-          pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch
-          pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk
-          microdosing gochujang live-edge
-        </p>
-        <p>Available : In Stock (6)</p>
-        <p>Category : Living Room</p>
-        <p>Brand : Marcos</p>
-        <p>SKU : Recs5BSVU3qQrOj4E</p>
-        <p className="border-b-2 border-gray-400"></p>
-        <div className="flex ml-2 text-3xl font-bold space-x-7">
-          <button onClick={decrement}>-</button>
-          <h2>{value}</h2>
-          <button onClick={increment}>+</button>
+    <div>
+      {product && (
+        <div className="max-w-2xl py-16 mx-auto lg:max-w-6xl lg:grid lg:grid-cols-2 lg:gap-10">
+          <div className="mt-10">
+            <img className="rounded" src={product.image} alt="soofa" />
+          </div>
+          <div className="flex flex-col space-y-5">
+            <h1 className="text-4xl font-bold">Sofa</h1>
+            <h2 className="text-xl text-yellow-600">{product.price} tk</h2>
+            <p className="leading-8 text-gray-600">{product.description}</p>
+            <p>Available : In Stock ({product.Available})</p>
+            <p>Category : {product.category}</p>
+            <p>Brand : {product.brand}</p>
+            <p>SKU : {product.psn}</p>
+            <p className="border-b-2 border-gray-400"></p>
+            <div className="flex ml-2 text-3xl font-bold space-x-7">
+              <button onClick={decrement}>-</button>
+              <h2>{value}</h2>
+              <button onClick={increment}>+</button>
+            </div>
+            <a
+              href="/"
+              className="px-3 py-2 bg-yellow-600 rounded w-fit"
+              onClick={addTocard}
+            >
+              ADD TO CART
+            </a>
+          </div>
         </div>
-        <a
-          href="/"
-          className="px-3 py-2 bg-yellow-600 rounded w-fit"
-          onClick={addTocard}
-        >
-          ADD TO CART
-        </a>
-      </div>
+      )}
     </div>
   );
 }
