@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import sofa from "../assets/FP2.png";
+import { useParams } from "react-router-dom";
 import { cartActions } from "../store/CartSlice";
 
 function ProductDetails() {
   const [value, setvalue] = useState(1);
+  const params = useParams();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
-  const product = products["product1"];
+  console.log(products);
+  console.log(params.productId);
+
+  const filterProductById = products.filter((product) => {
+    return product.id === params.productId;
+  });
+
+  const product = filterProductById[0];
 
   const increment = () => {
     const updateValue = value + 1;
@@ -37,13 +45,13 @@ function ProductDetails() {
 
   return (
     <div>
-      {product && (
+      {product ? (
         <div className="max-w-2xl py-16 mx-auto lg:max-w-6xl lg:grid lg:grid-cols-2 lg:gap-10">
           <div className="mt-10">
-            <img className="rounded" src={product.image} alt="soofa" />
+            <img className="rounded" src={product.image} alt={product.title} />
           </div>
           <div className="flex flex-col space-y-5">
-            <h1 className="text-4xl font-bold">Sofa</h1>
+            <h1 className="text-4xl font-bold">{product.title}</h1>
             <h2 className="text-xl text-yellow-600">{product.price} tk</h2>
             <p className="leading-8 text-gray-600">{product.description}</p>
             <p>Available : In Stock ({product.Available})</p>
@@ -65,7 +73,7 @@ function ProductDetails() {
             </a>
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

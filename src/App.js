@@ -17,14 +17,15 @@ function App() {
       const getProducts = async () => {
         const response = await fetch(`${ApiUrl}/products.json`);
         const data = await response.json();
-        dispatch(productActions.fetchProduct(data));
+        //console.log(Object.values(data));
+        dispatch(productActions.fetchProduct(Object.values(data)));
       };
 
       getProducts();
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -34,7 +35,7 @@ function App() {
         <Hero />
         <FeturedProducts />
       </Route>
-      <Route path="/productdetails">
+      <Route path="/productdetails/:productId">
         <ProductDetails />
       </Route>
     </div>

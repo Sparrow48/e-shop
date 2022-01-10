@@ -12,7 +12,7 @@ function Nav() {
         <Logo />
       </div>
       <div className="flex space-x-8 ">
-        <NavLink to="/home">Home</NavLink>
+        <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
         <NavLink to="/product">Product</NavLink>
       </div>
