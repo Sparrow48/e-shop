@@ -8,6 +8,7 @@ import ProductDetails from "./components/ProductDetails";
 import { useDispatch } from "react-redux";
 import { productActions } from "./store/ProductSlice";
 import { ApiUrl } from "./config";
+import Cart from "./components/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
       </Route>
       <Route path="/productdetails/:productId">
         <ProductDetails />
+      </Route>
+      <Route path="/cart">
+        <Cart />
       </Route>
     </div>
   );

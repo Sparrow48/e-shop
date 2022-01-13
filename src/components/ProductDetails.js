@@ -35,8 +35,8 @@ function ProductDetails() {
 
   const addTocard = () => {
     dispatch(
-      cartActions.addToCard({
-        id: "a1",
+      cartActions.addToCart({
+        id: product.id,
         title: product.title,
         value,
         price: product.price,

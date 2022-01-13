@@ -11,6 +11,9 @@ module.exports = {
       fontFamily: {
         logo: "'Aclonica', sans-serif",
       },
+      gridTemplateColumns: {
+        cart_title: "350px 1fr 1fr 1fr auto",
+      },
     },
   },
 

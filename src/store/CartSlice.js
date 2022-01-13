@@ -8,7 +8,7 @@ const CartSlice = createSlice({
     totalPrice: JSON.parse(localStorage.getItem("totalPrice") || "0"),
   },
   reducers: {
-    addToCard(state, action) {
+    addToCart(state, action) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
       state.totalQuantity = state.totalQuantity + newItem.value;
