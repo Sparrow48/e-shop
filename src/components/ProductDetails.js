@@ -40,6 +40,9 @@ function ProductDetails() {
         title: product.title,
         value,
         price: product.price,
+        image: product.image,
+        Available: product.Available,
+        quantity: value,
       })
     );
   };

@@ -8,7 +8,7 @@ import ProductDetails from "./components/ProductDetails";
 import { useDispatch } from "react-redux";
 import { productActions } from "./store/ProductSlice";
 import { ApiUrl } from "./config";
-import Cart from "./components/Cart";
+import Cart from "./components/cart/Cart";
 
 function App() {
   const dispatch = useDispatch();

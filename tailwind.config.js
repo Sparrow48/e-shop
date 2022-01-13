@@ -12,7 +12,8 @@ module.exports = {
         logo: "'Aclonica', sans-serif",
       },
       gridTemplateColumns: {
-        cart_title: "350px 1fr 1fr 1fr auto",
+        cart_title: "300px 1fr 1fr 1fr 1fr",
+        cart_img: " 100px 150px",
       },
     },
   },
