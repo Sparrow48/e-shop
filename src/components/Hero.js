@@ -19,8 +19,12 @@ function Hero() {
           </h1>
         </a>
       </div>
-      <div className="hidden object-cover w-3/4 lg:flex h-128">
-        <img src={HeroImage} alt="Cover_Image" />
+      <div className="hidden w-3/4 lg:flex h-128">
+        <img
+          className="object-cover rounded"
+          src={HeroImage}
+          alt="Cover_Image"
+        />
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ function App() {
     } catch (err) {
       console.error(err);
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>

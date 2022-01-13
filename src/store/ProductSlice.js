@@ -4,10 +4,12 @@ const ProductSlice = createSlice({
   name: "product",
   initialState: {
     products: [],
+    show: false,
   },
   reducers: {
     fetchProduct(state, action) {
       state.products.push(...action.payload);
+      state.show = true;
       // state.products = action.payload;
     },
   },

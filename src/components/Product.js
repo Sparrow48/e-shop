@@ -1,15 +1,16 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Product(props) {
   return (
     <div className="flex flex-col space-y-5 max-h-52 sm:h-60 lg:space-y-3 lg:w-60 lg:h-72">
-      <a href={`/productDetails/${props.id}`}>
+      <NavLink to={`/productDetails/${props.id}`}>
         <img
           className="object-cover h-40 rounded sm:h-56 w-72 sm:w-135 lg:h-64 lg:w-60 "
           src={props.image}
           alt="Fetured_products"
         />
-      </a>
+      </NavLink>
       <div className="flex justify-between">
         <h1 className="text-gray-600 ">{props.title}</h1>
         <h2 className="text-yellow-600 ">{props.price} tk</h2>
