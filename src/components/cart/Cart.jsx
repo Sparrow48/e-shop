@@ -30,6 +30,7 @@ function Cart() {
                 image={item.image}
                 quantity={item.quantity}
                 subTotal={item.subTotal}
+                Available={item.Available}
               />
             ))}
           </div>

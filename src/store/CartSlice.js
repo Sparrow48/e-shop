@@ -11,8 +11,8 @@ const CartSlice = createSlice({
     addToCart(state, action) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
-      state.totalQuantity = state.totalQuantity + newItem.value;
-      state.totalPrice = state.totalPrice + newItem.value * newItem.price;
+      state.totalQuantity = state.totalQuantity + newItem.quantity;
+      state.totalPrice = state.totalPrice + newItem.quantity * newItem.price;
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
@@ -21,11 +21,29 @@ const CartSlice = createSlice({
           image: newItem.image,
           Available: newItem.Available,
           quantity: newItem.quantity,
-          subTotal: newItem.value * newItem.price,
+          subTotal: newItem.quantity * newItem.price,
         });
       } else {
+        existingItem.quantity = existingItem.quantity + newItem.quantity;
         existingItem.subTotal =
-          existingItem.subTotal + newItem.value * newItem.price;
+          existingItem.subTotal + newItem.quantity * newItem.price;
+      }
+
+      localStorage.setItem("cart", JSON.stringify(state.items));
+      localStorage.setItem("total", JSON.stringify(state.totalQuantity));
+      localStorage.setItem("totalPrice", JSON.stringify(state.totalPrice));
+    },
+    removeItemFromCart(state, action) {
+      const newItem = action.payload;
+      const existingItem = state.items.find((item) => item.id === newItem.id);
+      state.totalQuantity = state.totalQuantity - newItem.quantity;
+      state.totalPrice = state.totalPrice - newItem.quantity * newItem.price;
+
+      if (existingItem.quantity > 1 && newItem.singleUnit) {
+        existingItem.quantity = existingItem.quantity - newItem.quantity;
+        existingItem.subTotal = existingItem.subTotal - newItem.price;
+      } else {
+        state.items = state.items.filter((item) => item.id != existingItem.id);
       }
 
       localStorage.setItem("cart", JSON.stringify(state.items));

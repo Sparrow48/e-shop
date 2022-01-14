@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { cartActions } from "../store/CartSlice";
@@ -74,13 +75,13 @@ function ProductDetails() {
                   <h2>{value}</h2>
                   <button onClick={increment}>+</button>
                 </div>
-                <a
-                  href="/"
+                <NavLink
+                  to="/cart"
                   className="px-3 py-2 bg-yellow-600 rounded w-fit"
                   onClick={addTocard}
                 >
                   ADD TO CART
-                </a>
+                </NavLink>
               </div>
             </div>
           ) : (
