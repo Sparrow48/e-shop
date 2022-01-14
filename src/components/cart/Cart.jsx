@@ -3,9 +3,12 @@ import { NavLink } from "react-router-dom";
 import CartItems from "./CartItems";
 import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../../store/CartSlice";
+import CheckOutDetails from "./CheckOutDetails";
 
 function Cart() {
   const items = useSelector((state) => state.cart.items);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const dispatch = useDispatch();
   // console.log(items);
 
@@ -24,7 +27,7 @@ function Cart() {
                 <p>Price</p>
                 <p>Quantity</p>
                 <p>Subtotal</p>
-                <span>delete</span>
+                <span>Remove</span>
               </div>
               <p className="pt-3 border-b border-gray-300"></p>
             </div>
@@ -58,6 +61,12 @@ function Cart() {
                   Clear Cart
                 </button>
               </div>
+            </div>
+            <div className="flex items-end justify-end py-10">
+              <CheckOutDetails
+                totalQuantity={totalQuantity}
+                totalPrice={totalPrice}
+              />
             </div>
           </div>
         ) : (

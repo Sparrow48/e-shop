@@ -14,6 +14,7 @@ module.exports = {
       gridTemplateColumns: {
         cart_title: "300px 1fr 1fr 1fr 1fr",
         cart_img: " 100px 150px",
+        checkout_item: "1fr 1fr",
       },
     },
   },

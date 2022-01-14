@@ -77,7 +77,7 @@ function ProductDetails() {
                 </div>
                 <NavLink
                   to="/cart"
-                  className="px-3 py-2 bg-yellow-600 rounded w-fit"
+                  className="px-3 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-500 w-fit"
                   onClick={addTocard}
                 >
                   ADD TO CART

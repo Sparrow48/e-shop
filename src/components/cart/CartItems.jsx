@@ -50,9 +50,7 @@ function CartItems(props) {
       <p>{props.price}</p>
       <div>
         <div className="flex items-center justify-center space-x-5 text-2xl font-semibold">
-          <button onClick={decrement} className="cursor-not-allowed">
-            -
-          </button>
+          <button onClick={decrement}>-</button>
           <h2>{props.quantity}</h2>
           <button
             onClick={increment}
