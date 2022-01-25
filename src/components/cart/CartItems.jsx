@@ -42,12 +42,15 @@ function CartItems(props) {
   };
 
   return (
-    <div className="grid items-center justify-center gap-4 py-6 text-center grid-cols-cart_title">
-      <div className="grid items-center justify-center gap-4 text-left grid-cols-cart_img">
+    <div className="grid items-center justify-center gap-4 py-6 text-center grid-cols-cart_title_mobile md:grid-cols-cart_title">
+      <div className="grid items-center justify-center gap-4 text-left grid-cols-cart_img_mobile md:grid-cols-cart_img">
         <img className="object-cover rounded " src={props.image} alt="" />
-        <h1 className="text-sm font-semibold ">{props.title}</h1>
+        <div>
+          <h1 className="text-sm font-semibold ">{props.title}</h1>
+          <p className="text-xs md:hidden">{props.price}</p>
+        </div>
       </div>
-      <p>{props.price}</p>
+      <p className="hidden md:contents">{props.price}</p>
       <div>
         <div className="flex items-center justify-center space-x-5 text-2xl font-semibold">
           <button onClick={decrement}>-</button>
@@ -62,7 +65,7 @@ function CartItems(props) {
         </div>
       </div>
 
-      <p>{props.subTotal}</p>
+      <p className="hidden md:contents">{props.subTotal}</p>
       <div>
         <button
           onClick={removeItem}

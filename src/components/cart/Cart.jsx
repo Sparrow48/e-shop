@@ -20,8 +20,8 @@ function Cart() {
     <div>
       <div>
         {items.length > 0 ? (
-          <div className="max-w-2xl py-16 mx-auto lg:max-w-6xl ">
-            <div>
+          <div className="max-w-2xl py-16 mx-5 lg:mx-auto md:max-w-4xl lg:max-w-6xl ">
+            <div className="hidden md:grid">
               <div className="grid gap-4 justify-items-center grid-cols-cart_title">
                 <p>Item</p>
                 <p>Price</p>

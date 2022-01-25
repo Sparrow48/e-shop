@@ -2,11 +2,11 @@ import React from "react";
 
 function CheckOutDetails(props) {
   const totalPrice = props.totalPrice + 1200;
-  const style = "grid  grid-cols-checkout_item gap-32";
+  const style = "grid  grid-cols-checkout_item gap-8 md:gap-32";
   return (
     <div className="flex flex-col items-end justify-end space-y-4">
-      <div className="flex flex-col p-5 space-y-4 border rounded hover:border-0 hover:shadow-lg w-fit h-fit ">
-        <div className={`${style} font-semibold`}>
+      <div className="flex flex-col p-5 space-y-4 rounded shadow-xl w-fit h-fit ">
+        <div className={`${style} font-medium md:font-semibold`}>
           <p>Subtotal :</p>
           <p>৳{props.totalPrice}</p>
         </div>
@@ -17,7 +17,9 @@ function CheckOutDetails(props) {
         <div>
           <p className="border-b "></p>
         </div>
-        <div className={`${style} text-2xl font-bold`}>
+        <div
+          className={`${style} text-xl md:text-2xl font-medium md:font-bold`}
+        >
           <p>Order Total :</p>
           <p>৳{totalPrice}</p>
         </div>

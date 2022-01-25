@@ -13,7 +13,9 @@ module.exports = {
       },
       gridTemplateColumns: {
         cart_title: "300px 1fr 1fr 1fr 1fr",
+        cart_title_mobile: "175px 1fr 1fr",
         cart_img: " 100px 150px",
+        cart_img_mobile: " 75px 75px",
         checkout_item: "1fr 1fr",
       },
     },
