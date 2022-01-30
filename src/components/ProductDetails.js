@@ -53,7 +53,7 @@ function ProductDetails() {
       {show ? (
         <div>
           {product ? (
-            <div className="max-w-2xl py-16 mx-auto lg:max-w-6xl lg:grid lg:grid-cols-2 lg:gap-10">
+            <div className="max-w-2xl py-16 mx-5 lg:mx-auto lg:max-w-6xl lg:grid lg:grid-cols-2 lg:gap-10">
               <div className="mt-10">
                 <img
                   className="rounded"

@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Product from "./Product";
+import ShowProduct from "./ShowProduct";
 import FP1 from "../assets/FP1.png";
 import FP2 from "../assets/FP2.png";
 import FP4 from "../assets/FP4.png";
 
 function FeturedProducts() {
   const products = useSelector((state) => state.product.products);
+  //console.log(products);
 
   return (
     <div>
@@ -16,8 +17,8 @@ function FeturedProducts() {
             <h1 className="text-3xl text-center ">Featured Products</h1>
             <p className="w-24 mx-auto border-b-4 border-yellow-600"></p>
             <div className="flex flex-col items-center justify-center py-16 space-y-12 sm:space-y-16 sm:py-24 lg:space-y-0 lg:space-x-20 lg:flex-row">
-              {products.map((product) => (
-                <Product
+              {products.slice(0, 3).map((product) => (
+                <ShowProduct
                   key={product.id}
                   image={product.image}
                   title={product.title}

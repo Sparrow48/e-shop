@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { productActions } from "./store/ProductSlice";
 import { ApiUrl } from "./config";
 import Cart from "./components/cart/Cart";
+import AboutUs from "./components/AboutUs";
+import Product from "./components/Product";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +20,8 @@ function App() {
       const getProducts = async () => {
         const response = await fetch(`${ApiUrl}/products.json`);
         const data = await response.json();
-        //console.log(Object.values(data));
+        // console.log(Object.values(data));
+        // console.log(data);
         dispatch(productActions.fetchProduct(Object.values(data)));
       };
 
@@ -36,11 +39,17 @@ function App() {
         <Hero />
         <FeturedProducts />
       </Route>
+      <Route path="/product">
+        <Product />
+      </Route>
       <Route path="/productdetails/:productId">
         <ProductDetails />
       </Route>
       <Route path="/cart">
         <Cart />
+      </Route>
+      <Route path="/about">
+        <AboutUs />
       </Route>
     </div>
   );

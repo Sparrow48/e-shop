@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function Product(props) {
+function ShowProduct(props) {
   return (
     <div className="flex flex-col space-y-5 max-h-52 sm:h-60 lg:space-y-3 lg:w-60 lg:h-72">
       <NavLink to={`/productDetails/${props.id}`}>
@@ -19,4 +19,4 @@ function Product(props) {
   );
 }
 
-export default Product;
+export default ShowProduct;
