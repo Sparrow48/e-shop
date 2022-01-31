@@ -27,7 +27,7 @@ function Product() {
     if (para == "All") {
       data = AllProducts;
     } else {
-      data = products.filter((product) => {
+      data = AllProducts.filter((product) => {
         return product.category == para;
       });
       //console.log(data);
@@ -46,7 +46,7 @@ function Product() {
               <ul className="flex flex-col items-start pt-5">
                 {category.map((item) => (
                   <button
-                    className="pt-2  focus:outline-none focus:border-b-2 focus:border-black"
+                    className="pt-2 focus:outline-none focus:border-b-2 focus:border-black"
                     key={item}
                     onClick={() => sortBycategory(item)}
                   >
