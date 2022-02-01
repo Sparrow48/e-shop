@@ -39,8 +39,8 @@ function Product() {
   return (
     <div>
       {products && (
-        <div className="flex max-w-6xl mx-auto ">
-          <div className="sticky top-0 h-full max-w-2xl pt-10 pr-5 w-72">
+        <div className="flex flex-col max-w-2xl px-10 mx-auto lg:px-0 lg:max-w-6xl lg:flex-row ">
+          <div className="top-0 h-full max-w-2xl pt-10 pr-5 lg:sticky w-72">
             <div className="">
               <div>
                 <h1 className="pl-5 font-bold bg-gray-200 rounded">Category</h1>
@@ -59,7 +59,7 @@ function Product() {
               </ul>
             </div>
           </div>
-          <div className="grid max-w-4xl grid-cols-3 pt-10 gap-x-16 gap-y-12">
+          <div className="grid max-w-2xl grid-cols-1 pt-10 mx-auto lg:max-w-4xl lg:grid-cols-2 xl:grid-cols-3 gap-x-16 gap-y-12">
             {products.map((product) => (
               <ShowProduct
                 key={product.id}
