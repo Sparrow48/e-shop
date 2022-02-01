@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 
 function ShowProduct(props) {
   return (
-    <div className="flex flex-col space-y-5 max-h-52 sm:h-60 lg:space-y-3 lg:w-60 lg:h-72">
+    <div className="flex flex-col space-y-3 max-h-52 sm:h-60 lg:w-72 lg:h-72">
       <NavLink to={`/productDetails/${props.id}`}>
         <img
-          className="object-cover h-40 rounded sm:h-56 w-72 sm:w-135 lg:h-64 lg:w-60 "
+          className="object-cover h-40 rounded sm:h-48 w-72 sm:w-135 lg:h-48 lg:w-72 "
           src={props.image}
           alt="Fetured_products"
         />
