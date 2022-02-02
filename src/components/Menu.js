@@ -24,7 +24,7 @@ function Menu() {
 
               <div className="px-10 pt-5 text-xl">
                 <ul className="flex flex-col items-center w-fit">
-                  <NavLink className={linkDesign} onClick={toggle} to="/home">
+                  <NavLink className={linkDesign} onClick={toggle} to="/">
                     Home
                   </NavLink>
                   <NavLink className={linkDesign} onClick={toggle} to="/about">

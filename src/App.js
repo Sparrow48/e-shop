@@ -34,8 +34,8 @@ function App() {
   return (
     <div>
       <Nav />
+      <Menu />
       <Route path="/" exact>
-        <Menu />
         <Hero />
         <FeturedProducts />
       </Route>

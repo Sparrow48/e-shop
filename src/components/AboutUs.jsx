@@ -1,9 +1,23 @@
 import React from "react";
+import HeroImage from "../assets/hero.png";
 
 function AboutUs() {
   return (
     <div>
-      <h1 className="text-center ">hello About</h1>
+      <div className="grid items-center justify-center max-h-screen gap-20 px-10 py-12 mx-auto sm:py-24 md:py-48 lg:px-0 lg:grid-cols-2 lg:max-w-6xl">
+        <img className="rounded " src={HeroImage} alt="Hero_Image" />
+        <div>
+          <h1 className="pb-5 text-2xl lg:text-3xl">About Us</h1>
+          <p className="leading-6">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste,
+            quibusdam? Earum delectus fugit illum recusandae velit eveniet harum
+            ipsam praesentium. Esse ipsam perferendis porro repudiandae mollitia
+            amet, dolorum accusantium, fugit vitae nam possimus quibusdam
+            suscipit commodi eum vel? Laboriosam excepturi, in dolorum hic
+            explicabo praesentium eum atque libero optio eligendi.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
