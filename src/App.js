@@ -6,7 +6,7 @@ import Menu from "./components/Menu";
 import Nav from "./components/Nav";
 import ProductDetails from "./components/ProductDetails";
 import { useDispatch } from "react-redux";
-import { productActions } from "./store/ProductSlice";
+import { fetchProduct } from "./store/ProductSlice";
 import { ApiUrl } from "./config";
 import Cart from "./components/cart/Cart";
 import AboutUs from "./components/AboutUs";
@@ -17,19 +17,28 @@ function App() {
 
   useEffect(() => {
     try {
-      const getProducts = async () => {
-        const response = await fetch(`${ApiUrl}/products.json`);
-        const data = await response.json();
-        // console.log(Object.values(data));
-        // console.log(data);
-        dispatch(productActions.fetchProduct(Object.values(data)));
-      };
-
-      getProducts();
+      dispatch(fetchProduct(ApiUrl));
+      console.log("app");
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   try {
+  //     const getProducts = async () => {
+  //       const response = await fetch(`${ApiUrl}/products.json`);
+  //       const data = await response.json();
+  //       // console.log(Object.values(data));
+  //       // console.log(data);
+  //       dispatch(productActions.fetchProduct(Object.values(data)));
+  //     };
+
+  //     getProducts();
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }, []);
 
   return (
     <div>

@@ -14,8 +14,8 @@ function Nav() {
         </div>
         <div className="flex space-x-8 ">
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
           <NavLink to="/product">Product</NavLink>
+          <NavLink to="/about">About</NavLink>
         </div>
         <div className="flex justify-between space-x-8">
           <NavLink to="/cart">
