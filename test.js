@@ -31,3 +31,8 @@ const input = ["asff"];
 for (let v of input) {
   search(v);
 }
+
+// const searchDebouncer = useCallback(debounce(searchProducts, 1000), [
+//   AllProducts,
+//   products,
+// ]);

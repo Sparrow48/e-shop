@@ -3,9 +3,12 @@ import { useSelector } from "react-redux";
 import ShowProduct from "./ShowProduct";
 import { debounce } from "./../utils/Debounce";
 
+let searchDebouncer = null;
+
 function Product() {
   const { products: AllProducts, show } = useSelector((state) => state.product);
   const [products, setProducts] = useState(AllProducts);
+  console.log("products: ", products);
   const [searchString, setSearchString] = useState("");
   const [active, setActive] = useState("All");
   const [category, setCategory] = useState([
@@ -14,7 +17,6 @@ function Product() {
     "Bedroom ",
     "Dining Kids",
   ]);
-
   const filterBycategory = (key = "") => {
     //console.log(para);
     setActive(key);
@@ -28,8 +30,12 @@ function Product() {
     }
     setProducts(data);
   };
+  console.log("here called");
 
   const searchProducts = (title) => {
+    console.log("All products: ", AllProducts);
+    console.log("Title", title);
+
     if (!title) {
       setProducts(AllProducts);
       return;
@@ -41,7 +47,8 @@ function Product() {
     return;
   };
 
-  const searchDebouncer = debounce(searchProducts, 1000);
+  if (!searchDebouncer) searchDebouncer = debounce(searchProducts, 3000);
+
   const setCategories = () => {
     const categories = [
       ...category,
@@ -51,9 +58,11 @@ function Product() {
     setCategory(Array.from(distinctCategory));
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     setCategories();
-    await searchDebouncer(searchString);
+    if (searchString.length > 2) searchDebouncer(searchString);
+    setProducts(AllProducts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchString, AllProducts]);
 
   const searchByName = (event) => {

@@ -10,7 +10,7 @@ import { fetchProduct } from "./store/ProductSlice";
 import { ApiUrl } from "./config";
 import Cart from "./components/cart/Cart";
 import AboutUs from "./components/AboutUs";
-import Product from "./components/Product";
+import Products from "./components/product/Products";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,22 +24,6 @@ function App() {
     }
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   try {
-  //     const getProducts = async () => {
-  //       const response = await fetch(`${ApiUrl}/products.json`);
-  //       const data = await response.json();
-  //       // console.log(Object.values(data));
-  //       // console.log(data);
-  //       dispatch(productActions.fetchProduct(Object.values(data)));
-  //     };
-
-  //     getProducts();
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }, []);
-
   return (
     <div>
       <Nav />
@@ -49,7 +33,7 @@ function App() {
         <FeturedProducts />
       </Route>
       <Route path="/product">
-        <Product />
+        <Products />
       </Route>
       <Route path="/productdetails/:productId">
         <ProductDetails />
