@@ -27,7 +27,7 @@ const search = async (str) => {
   console.log(ret);
 };
 
-const input = ["asdasd", "sadasdasd", "asd", "sadasfdasd"];
+const input = ["asff"];
 for (let v of input) {
   search(v);
 }

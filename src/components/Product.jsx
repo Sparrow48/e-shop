@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
 import { useSelector } from "react-redux";
 import ShowProduct from "./ShowProduct";
+import { debounce } from "./../utils/Debounce";
 
 function Product() {
   const { products: AllProducts, show } = useSelector((state) => state.product);
-
   const [products, setProducts] = useState(AllProducts);
   const [searchString, setSearchString] = useState("");
+  const [active, setActive] = useState("All");
   const [category, setCategory] = useState([
     "All",
     "Kitchen",
@@ -15,51 +15,55 @@ function Product() {
     "Dining Kids",
   ]);
 
-  useEffect(() => {
-    setProducts(AllProducts);
+  const filterBycategory = (key = "") => {
+    //console.log(para);
+    setActive(key);
+    let data = [];
+    if (key == "All") {
+      data = AllProducts;
+    } else {
+      data = AllProducts.filter((product) => {
+        return product.category == key;
+      });
+    }
+    setProducts(data);
+  };
+
+  const searchProducts = (title) => {
+    if (!title) {
+      setProducts(AllProducts);
+      return;
+    }
+    const filteredProductes = products.filter((item) =>
+      item.title.toLowerCase().includes(title.toLowerCase())
+    );
+    setProducts(filteredProductes);
+    return;
+  };
+
+  const searchDebouncer = debounce(searchProducts, 1000);
+  const setCategories = () => {
     const categories = [
       ...category,
       ...AllProducts.map((product) => product.category),
     ];
     const distinctCategory = new Set(categories);
     setCategory(Array.from(distinctCategory));
-  }, [AllProducts]);
-
-  const filterByName = (key = "") => {
-    //console.log(para);
-    let data = [];
-    if (key == "All") {
-      data = AllProducts;
-    } else {
-      data = AllProducts.filter((product) => {
-        return product.category == key;
-      });
-    }
-    setProducts(data);
   };
 
-  // TODO: Use debounce to search and add debounce in utils
-  useEffect(() => {
-    //* Code here
-  }, [searchString]);
+  useEffect(async () => {
+    setCategories();
+    await searchDebouncer(searchString);
+  }, [searchString, AllProducts]);
 
-  const sortBycategory = (key = "") => {
-    //console.log(para);
-    let data = [];
-    if (key == "All") {
-      data = AllProducts;
-    } else {
-      data = AllProducts.filter((product) => {
-        return product.category == key;
-      });
-    }
-    setProducts(data);
+  const searchByName = (event) => {
+    setSearchString(event.target.value);
   };
 
   return (
     <div>
       <div className="flex flex-col max-w-2xl px-10 pt-16 mx-auto space-y-16 md:space-y-0 lg:px-0 md:max-w-3xl lg:max-w-4xl xl:max-w-6xl md:flex-row">
-        <div className="top-0 w-56 h-full pr-5 lg:sticky">
+        <div className="w-56 h-full pr-5 top-5 lg:sticky">
           <div>
             <div className="w-full mb-6 md:mb-0">
               <input
@@ -67,6 +71,7 @@ function Product() {
                 id="grid-city"
                 type="text"
                 placeholder="Search"
+                onChange={searchByName}
               />
             </div>
           </div>
@@ -78,9 +83,13 @@ function Product() {
             <ul className="flex flex-col items-start pt-3 pl-3">
               {category.sort().map((item) => (
                 <button
-                  className="pt-2 focus:outline-none focus:border-b-2 focus:border-black"
-                  key={nanoid()}
-                  onClick={() => sortBycategory(item)}
+                  className={
+                    active === item
+                      ? "pt-2  border-b-2  border-blue-500"
+                      : "pt-2 "
+                  }
+                  key={item}
+                  onClick={() => filterBycategory(item)}
                 >
                   {item}
                 </button>
@@ -91,7 +100,7 @@ function Product() {
         {show ? (
           products && (
             <div className="max-w-2xl divide-y lg:max-w-5xl">
-              <div className="flex justify-between ">
+              <div className="flex justify-between lg:w-5xl">
                 <div className="px-3 pt-1 bg-gray-100 border rounded">
                   <h1>{products.length} Products Found.</h1>
                 </div>
@@ -128,7 +137,7 @@ function Product() {
             </div>
           )
         ) : (
-          <h1> no products found!</h1>
+          <h1> Loading...</h1>
         )}
       </div>
     </div>

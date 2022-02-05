@@ -15,13 +15,7 @@ const ProductSlice = createSlice({
     products: [],
     show: false,
   },
-  reducers: {
-    // fetchProduct(state, action) {
-    //   state.products.push(...action.payload);
-    //   state.show = true;
-    //   // state.products = action.payload;
-    // },
-  },
+  reducers: {},
   extraReducers: {
     [fetchProduct.fulfilled]: (state, action) => {
       state.products.push(...action.payload);
