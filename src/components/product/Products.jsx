@@ -4,9 +4,11 @@ import FilterProducts from "./FilterProducts";
 import ProductItem from "./ProductItem";
 
 function Product() {
-  const { products, show } = useSelector((state) => state.product);
+  const { updatedProducts: products, show } = useSelector(
+    (state) => state.product
+  );
 
-  console.log("From Products");
+  console.log("From Products", products);
 
   return (
     <div>

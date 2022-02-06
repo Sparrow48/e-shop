@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { debounce } from "./../../utils/Debounce";
+import { useDispatch } from "react-redux";
+import { productActions } from "./../../store/ProductSlice";
 
 function FilterProducts() {
+  const dispatch = useDispatch();
+
   const [active, setActive] = useState("All");
   const [searchString, setSearchString] = useState("");
   const [category, setCategory] = useState([
@@ -10,13 +15,20 @@ function FilterProducts() {
     "Dining Kids",
   ]);
 
+  useEffect(() => {
+    dispatch(productActions.filterProducts({ searchString, active }));
+    console.log("effect");
+  }, [searchString, active, dispatch]);
+
   const filterBycategory = (key = "") => {
     setActive(key);
   };
 
-  const searchByName = (event) => {
+  const search = (event) => {
     setSearchString(event.target.value);
   };
+
+  const searchByName = debounce(search, 1000);
 
   return (
     <div>

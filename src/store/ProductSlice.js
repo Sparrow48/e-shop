@@ -13,12 +13,42 @@ const ProductSlice = createSlice({
   name: "product",
   initialState: {
     products: [],
+    updatedProducts: [],
     show: false,
   },
-  reducers: {},
+  reducers: {
+    filterProducts(state, action) {
+      const { searchString, active: category } = action.payload;
+      console.log("searchString = ", searchString);
+      console.log("category = ", category);
+      let newProducts;
+      let filteredProducts;
+
+      if (category == "All") {
+        newProducts = state.products;
+      } else {
+        newProducts = state.products.filter((product) => {
+          return product.category == category;
+        });
+      }
+
+      if (!searchString) {
+        filteredProducts = newProducts;
+      } else {
+        filteredProducts = newProducts.filter((product) => {
+          return product.title
+            .toLowerCase()
+            .includes(searchString.toLowerCase());
+        });
+      }
+      state.updatedProducts = [];
+      state.updatedProducts.push(...filteredProducts);
+    },
+  },
   extraReducers: {
     [fetchProduct.fulfilled]: (state, action) => {
       state.products.push(...action.payload);
+      state.updatedProducts.push(...action.payload);
       state.show = true;
     },
     [fetchProduct.rejected]: (state, action) => {
