@@ -14,6 +14,7 @@ import Products from "./components/product/Products";
 
 function App() {
   const dispatch = useDispatch();
+  console.log("app1");
 
   useEffect(() => {
     try {

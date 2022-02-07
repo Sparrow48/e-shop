@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "./../../utils/Debounce";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { productActions } from "./../../store/ProductSlice";
 
 function FilterProducts() {
+  const { products } = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
   const [active, setActive] = useState("All");
@@ -16,8 +17,17 @@ function FilterProducts() {
   ]);
 
   useEffect(() => {
+    const categories = [
+      ...category,
+      ...products.map((product) => product.category),
+    ];
+    const distinctCategory = new Set(categories);
+    setCategory(Array.from(distinctCategory));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [products]);
+
+  useEffect(() => {
     dispatch(productActions.filterProducts({ searchString, active }));
-    console.log("effect");
   }, [searchString, active, dispatch]);
 
   const filterBycategory = (key = "") => {
@@ -28,7 +38,7 @@ function FilterProducts() {
     setSearchString(event.target.value);
   };
 
-  const searchByName = debounce(search, 1000);
+  const searchByName = debounce(search, 500);
 
   return (
     <div>

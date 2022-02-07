@@ -8,8 +8,6 @@ function Product() {
     (state) => state.product
   );
 
-  console.log("From Products", products);
-
   return (
     <div>
       <div className="flex flex-col max-w-2xl px-10 pt-16 mx-auto space-y-16 md:space-y-0 lg:px-0 md:max-w-3xl lg:max-w-4xl xl:max-w-6xl md:flex-row">

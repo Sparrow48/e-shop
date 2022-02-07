@@ -19,30 +19,32 @@ const ProductSlice = createSlice({
   reducers: {
     filterProducts(state, action) {
       const { searchString, active: category } = action.payload;
-      console.log("searchString = ", searchString);
-      console.log("category = ", category);
       let newProducts;
       let filteredProducts;
 
-      if (category == "All") {
-        newProducts = state.products;
+      if (category === "All" && !searchString) {
+        state.updatedProducts = state.products;
       } else {
-        newProducts = state.products.filter((product) => {
-          return product.category == category;
-        });
-      }
+        if (category === "All") {
+          newProducts = state.products;
+        } else {
+          newProducts = state.products.filter((product) => {
+            return product.category === category;
+          });
+        }
 
-      if (!searchString) {
-        filteredProducts = newProducts;
-      } else {
-        filteredProducts = newProducts.filter((product) => {
-          return product.title
-            .toLowerCase()
-            .includes(searchString.toLowerCase());
-        });
+        if (!searchString) {
+          filteredProducts = newProducts;
+        } else {
+          filteredProducts = newProducts.filter((product) => {
+            return product.title
+              .toLowerCase()
+              .includes(searchString.toLowerCase());
+          });
+        }
+        state.updatedProducts = [];
+        state.updatedProducts.push(...filteredProducts);
       }
-      state.updatedProducts = [];
-      state.updatedProducts.push(...filteredProducts);
     },
   },
   extraReducers: {
