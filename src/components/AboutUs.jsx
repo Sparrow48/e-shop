@@ -24,6 +24,8 @@ function AboutUs() {
 
 export default AboutUs;
 
+/*-------------------------Send data to database-------------------------*/
+
 // import React from "react";
 
 // function AboutUs() {

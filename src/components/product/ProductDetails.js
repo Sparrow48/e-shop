@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { cartActions } from "../store/CartSlice";
+import { cartActions } from "./../../store/CartSlice";
 
 function ProductDetails() {
   const [value, setvalue] = useState(1);

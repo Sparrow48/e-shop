@@ -2,34 +2,28 @@ import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import FeturedProducts from "./components/FeturedProducts";
 import Hero from "./components/Hero";
-import Menu from "./components/Menu";
-import Nav from "./components/Nav";
-import ProductDetails from "./components/ProductDetails";
+import Menu from "./components/nav/Menu";
+import Nav from "./components/nav/Nav";
+import ProductDetails from "./components/product/ProductDetails";
 import { useDispatch } from "react-redux";
-import { productActions } from "./store/ProductSlice";
+import { fetchProduct } from "./store/ProductSlice";
 import { ApiUrl } from "./config";
 import Cart from "./components/cart/Cart";
 import AboutUs from "./components/AboutUs";
-import Product from "./components/Product";
+import Products from "./components/product/Products";
 
 function App() {
   const dispatch = useDispatch();
+  console.log("app1");
 
   useEffect(() => {
     try {
-      const getProducts = async () => {
-        const response = await fetch(`${ApiUrl}/products.json`);
-        const data = await response.json();
-        // console.log(Object.values(data));
-        // console.log(data);
-        dispatch(productActions.fetchProduct(Object.values(data)));
-      };
-
-      getProducts();
+      dispatch(fetchProduct(ApiUrl));
+      console.log("app");
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -40,7 +34,7 @@ function App() {
         <FeturedProducts />
       </Route>
       <Route path="/product">
-        <Product />
+        <Products />
       </Route>
       <Route path="/productdetails/:productId">
         <ProductDetails />
