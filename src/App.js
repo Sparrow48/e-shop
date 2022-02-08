@@ -11,15 +11,15 @@ import { ApiUrl } from "./config";
 import Cart from "./components/cart/Cart";
 import AboutUs from "./components/AboutUs";
 import Products from "./components/product/Products";
+import LogIn from "./components/auth/LogIn";
+import SignUp from "./components/auth/SignUp";
 
 function App() {
   const dispatch = useDispatch();
-  console.log("app1");
 
   useEffect(() => {
     try {
       dispatch(fetchProduct(ApiUrl));
-      console.log("app");
     } catch (err) {
       console.error(err);
     }
@@ -44,6 +44,12 @@ function App() {
       </Route>
       <Route path="/about">
         <AboutUs />
+      </Route>
+      <Route path="/login">
+        <LogIn />
+      </Route>
+      <Route path="/signup">
+        <SignUp />
       </Route>
     </div>
   );
