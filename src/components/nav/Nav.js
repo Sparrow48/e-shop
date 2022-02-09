@@ -6,6 +6,10 @@ import Logo from "./Logo";
 
 function Nav() {
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  const logOutHanlder = () => {};
+
   return (
     <div className="border-b ">
       <div className="justify-between hidden py-5 mx-auto text-gray-600 pt-7 lg:flex lg:max-w-6xl">
@@ -36,15 +40,22 @@ function Nav() {
               </span>
             </div>
           </NavLink>
-          <NavLink className="flex space-x-1" to="/login">
-            <h1>Login</h1>
-            <Icon
-              icon="clarity:login-line"
-              color="gray"
-              width="20"
-              height="20"
-            />
-          </NavLink>
+
+          {!isAuthenticated ? (
+            <NavLink className="flex space-x-1" to="/login">
+              <h1>Login</h1>
+              <Icon
+                icon="clarity:login-line"
+                color="gray"
+                width="20"
+                height="20"
+              />
+            </NavLink>
+          ) : (
+            <NavLink className="flex space-x-1" to="/login">
+              <h1 onClick={logOutHanlder}>LogOut</h1>
+            </NavLink>
+          )}
         </div>
       </div>
     </div>

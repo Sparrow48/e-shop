@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { debounce } from "../../utils/Debounce";
 
 function LogIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const emailHandler = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const signUpHandler = () => {};
+
+  const optimise_EmailHandler = debounce(emailHandler, 500);
+  const optimise_PasswordHandler = debounce(passwordHandler, 500);
   return (
     <div>
       <div className="mt-24 text-center">
@@ -40,6 +56,7 @@ function LogIn() {
               <input
                 className="block w-full px-3 py-3 font-medium leading-tight text-gray-900 bg-white border border-gray-400 rounded-lg appearance-none focus:outline-none"
                 type="email"
+                onChange={optimise_EmailHandler}
                 required
               />
             </div>
@@ -53,6 +70,7 @@ function LogIn() {
               <input
                 className="block w-full px-3 py-3 font-medium leading-tight text-gray-900 bg-white border border-gray-400 rounded-lg appearance-none focus:outline-none"
                 type="password"
+                onClick={optimise_PasswordHandler}
                 required
               />
             </div>
@@ -76,7 +94,10 @@ function LogIn() {
               </div>
             </div>
             <div className="w-full px-3 mb-6 md:w-full">
-              <button className="block w-full px-3 py-3 font-bold leading-tight text-gray-100 bg-blue-600 border border-gray-200 rounded-lg appearance-none hover:bg-blue-500 focus:outline-none focus:bg-white focus:border-gray-500">
+              <button
+                className="block w-full px-3 py-3 font-bold leading-tight text-gray-100 bg-blue-600 border border-gray-200 rounded-lg appearance-none hover:bg-blue-500 focus:outline-none focus:bg-white focus:border-gray-500"
+                onSubmit={signUpHandler}
+              >
                 Sign in
               </button>
             </div>
