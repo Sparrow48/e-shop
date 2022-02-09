@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { debounce } from "../../utils/Debounce";
@@ -15,10 +15,6 @@ function SignUp() {
   const { error, isAuthenticated } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
-
-  if (isAuthenticated) {
-    history.push("/");
-  }
 
   const emailHandler = (event) => {
     setEmail(event.target.value);
@@ -38,6 +34,12 @@ function SignUp() {
       })
     );
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/");
+    }
+  }, [history, isAuthenticated]);
 
   const optimise_EmailHandler = debounce(emailHandler, 500);
   const optimise_PasswordHandler = debounce(passwordHandler, 500);

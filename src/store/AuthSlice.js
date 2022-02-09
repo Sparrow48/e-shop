@@ -35,7 +35,11 @@ const AuthSlice = createSlice({
     isAuthenticated: false,
     error: "",
   },
-  reducers: {},
+  reducers: {
+    logOut(state, action) {
+      state.isAuthenticated = false;
+    },
+  },
   extraReducers: {
     [signUpUser.fulfilled]: (state, action) => {
       state.isAuthenticated = true;

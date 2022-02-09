@@ -1,15 +1,19 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { authActions } from "../../store/AuthSlice";
 
 import Logo from "./Logo";
 
 function Nav() {
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  const logOutHanlder = () => {};
+  const logOutHanlder = () => {
+    dispatch(authActions.logOut());
+  };
 
   return (
     <div className="border-b ">

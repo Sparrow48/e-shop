@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { debounce } from "../../utils/Debounce";
@@ -8,21 +8,19 @@ import { AuthUrl, authKey } from "./../../config";
 function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const { error, isAuthenticated } = useSelector((state) => state.auth);
-
   const dispatch = useDispatch();
-
-  if (isAuthenticated) {
-    history.push("/");
-  }
-
   let history = useHistory();
+
   let url = `${AuthUrl}signInWithPassword?key=${authKey}`;
+
+  console.log("login");
 
   const emailHandler = (event) => {
     setEmail(event.target.value);
   };
+
+  console.log(isAuthenticated);
 
   console.log(password);
 
@@ -40,6 +38,12 @@ function LogIn() {
       })
     );
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/");
+    }
+  }, [history, isAuthenticated]);
 
   const optimise_EmailHandler = debounce(emailHandler, 500);
   const optimise_PasswordHandler = debounce(passwordHandler, 500);
