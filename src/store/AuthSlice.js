@@ -15,6 +15,20 @@ export const signUpUser = createAsyncThunk(
   }
 );
 
+export const logInUser = createAsyncThunk(
+  "auth/logIn",
+  async (reqConfig, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(reqConfig.url, {
+        email: reqConfig.email,
+        password: reqConfig.password,
+      });
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const AuthSlice = createSlice({
   name: "auth",
   initialState: {
@@ -28,6 +42,14 @@ const AuthSlice = createSlice({
       state.error = "";
     },
     [signUpUser.rejected]: (state, action) => {
+      state.isAuthenticated = false;
+      state.error = action.payload.error.message;
+    },
+    [logInUser.fulfilled]: (state, action) => {
+      state.isAuthenticated = true;
+      state.error = "";
+    },
+    [logInUser.rejected]: (state, action) => {
       state.isAuthenticated = false;
       state.error = action.payload.error.message;
     },

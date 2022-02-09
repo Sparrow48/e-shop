@@ -3,15 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { debounce } from "../../utils/Debounce";
 import { signUpUser } from "./../../store/AuthSlice";
-import { signUpUrl, authKey } from "./../../config";
+import { AuthUrl, authKey } from "./../../config";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   let history = useHistory();
-  let url = `${signUpUrl}?key=${authKey}`;
-  console.log(url);
+  let url = `${AuthUrl}signUp?key=${authKey}`;
 
   const { error, isAuthenticated } = useSelector((state) => state.auth);
 
