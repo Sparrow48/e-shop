@@ -14,15 +14,9 @@ function LogIn() {
 
   let url = `${AuthUrl}signInWithPassword?key=${authKey}`;
 
-  console.log("login");
-
   const emailHandler = (event) => {
     setEmail(event.target.value);
   };
-
-  console.log(isAuthenticated);
-
-  console.log(password);
 
   const passwordHandler = (event) => {
     setPassword(event.target.value);

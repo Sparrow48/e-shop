@@ -9,6 +9,7 @@ import Logo from "./Logo";
 function Nav() {
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
   const { isAuthenticated } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
 
   const logOutHanlder = () => {
@@ -46,7 +47,11 @@ function Nav() {
             </div>
           </NavLink>
 
-          {!isAuthenticated ? (
+          {isAuthenticated ? (
+            <NavLink className="flex space-x-1" to="/login">
+              <h1 onClick={logOutHanlder}>LogOut</h1>
+            </NavLink>
+          ) : (
             <NavLink className="flex space-x-1" to="/login">
               <h1>Login</h1>
               <Icon
@@ -55,10 +60,6 @@ function Nav() {
                 width="20"
                 height="20"
               />
-            </NavLink>
-          ) : (
-            <NavLink className="flex space-x-1" to="/login">
-              <h1 onClick={logOutHanlder}>LogOut</h1>
             </NavLink>
           )}
         </div>

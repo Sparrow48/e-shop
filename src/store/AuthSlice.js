@@ -23,6 +23,7 @@ export const logInUser = createAsyncThunk(
         email: reqConfig.email,
         password: reqConfig.password,
       });
+      console.log(response.data.idToken);
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -32,29 +33,36 @@ export const logInUser = createAsyncThunk(
 const AuthSlice = createSlice({
   name: "auth",
   initialState: {
-    isAuthenticated: false,
+    isAuthenticated: JSON.parse(
+      localStorage.getItem("isAuthenticated") || false
+    ),
     error: "",
   },
   reducers: {
     logOut(state, action) {
       state.isAuthenticated = false;
+      localStorage.setItem("isAuthenticated", false);
     },
   },
   extraReducers: {
     [signUpUser.fulfilled]: (state, action) => {
       state.isAuthenticated = true;
+      localStorage.setItem("isAuthenticated", true);
       state.error = "";
     },
     [signUpUser.rejected]: (state, action) => {
       state.isAuthenticated = false;
+      localStorage.setItem("isAuthenticated", false);
       state.error = action.payload.error.message;
     },
     [logInUser.fulfilled]: (state, action) => {
       state.isAuthenticated = true;
+      localStorage.setItem("isAuthenticated", true);
       state.error = "";
     },
     [logInUser.rejected]: (state, action) => {
       state.isAuthenticated = false;
+      localStorage.setItem("isAuthenticated", false);
       state.error = action.payload.error.message;
     },
   },

@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const CartSlice = createSlice({
   name: "cart",
   initialState: {
-    items: JSON.parse(localStorage.getItem("cart") || "[]"),
-    totalQuantity: JSON.parse(localStorage.getItem("total") || "0"),
-    totalPrice: JSON.parse(localStorage.getItem("totalPrice") || "0"),
+    items: JSON.parse(localStorage.getItem("cart") || []),
+    totalQuantity: JSON.parse(localStorage.getItem("total") || 0),
+    totalPrice: JSON.parse(localStorage.getItem("totalPrice") || 0),
   },
   reducers: {
     addToCart(state, action) {
@@ -43,7 +43,7 @@ const CartSlice = createSlice({
         existingItem.quantity = existingItem.quantity - newItem.quantity;
         existingItem.subTotal = existingItem.subTotal - newItem.price;
       } else {
-        state.items = state.items.filter((item) => item.id != existingItem.id);
+        state.items = state.items.filter((item) => item.id !== existingItem.id);
       }
 
       localStorage.setItem("cart", JSON.stringify(state.items));
