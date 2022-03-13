@@ -13,6 +13,7 @@ import AboutUs from "./components/AboutUs";
 import Products from "./components/product/Products";
 import LogIn from "./components/auth/LogIn";
 import SignUp from "./components/auth/SignUp";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function App() {
       <Route path="/signup">
         <SignUp />
       </Route>
+      <Footer />
     </div>
   );
 }
