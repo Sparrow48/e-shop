@@ -1,9 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ShowProduct from "./ShowProduct";
-import FP1 from "../assets/FP1.png";
-import FP2 from "../assets/FP2.png";
-import FP4 from "../assets/FP4.png";
 
 function FeturedProducts() {
   const products = useSelector((state) => state.product.products);
@@ -29,7 +27,7 @@ function FeturedProducts() {
             </div>
             <div className="lg:pt-6">
               <div className="px-3 py-2 mx-auto text-center text-white bg-yellow-600 rounded w-fit hover:bg-yellow-500 hover:text-gray-800">
-                <a href="/products">All Products</a>
+                <NavLink to="/product">All Products</NavLink>
               </div>
             </div>
           </div>
