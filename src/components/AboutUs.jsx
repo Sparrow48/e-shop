@@ -4,7 +4,7 @@ import HeroImage from "../assets/hero.png";
 function AboutUs() {
   return (
     <div>
-      <div className="grid items-center justify-center max-h-screen gap-20 px-10 py-12 mx-auto sm:py-24 md:py-48 lg:px-0 lg:grid-cols-2 lg:max-w-6xl">
+      <div className="grid items-center justify-center gap-20 px-10 py-12 mx-auto sm:py-24 md:py-48 lg:px-0 lg:grid-cols-2 lg:max-w-6xl">
         <img className="rounded " src={HeroImage} alt="Hero_Image" />
         <div>
           <h1 className="pb-5 text-2xl lg:text-3xl">About Us</h1>
