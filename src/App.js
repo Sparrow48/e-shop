@@ -27,32 +27,36 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div>
-      <Nav />
-      <Menu />
-      <Route path="/" exact>
-        <Hero />
-        <FeturedProducts />
-      </Route>
-      <Route path="/product">
-        <Products />
-      </Route>
-      <Route path="/productdetails/:productId">
-        <ProductDetails />
-      </Route>
-      <Route path="/cart">
-        <Cart />
-      </Route>
-      <Route path="/about">
-        <AboutUs />
-      </Route>
-      <Route path="/login">
-        <LogIn />
-      </Route>
-      <Route path="/signup">
-        <SignUp />
-      </Route>
-      <Footer />
+    <div className="flex flex-col justify-between h-screen">
+      <div>
+        <Nav />
+        <Menu />
+        <Route path="/" exact>
+          <Hero />
+          <FeturedProducts />
+        </Route>
+        <Route path="/product">
+          <Products />
+        </Route>
+        <Route path="/productdetails/:productId">
+          <ProductDetails />
+        </Route>
+        <Route path="/cart">
+          <Cart />
+        </Route>
+        <Route path="/about">
+          <AboutUs />
+        </Route>
+        <Route path="/login">
+          <LogIn />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

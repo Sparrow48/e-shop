@@ -10,7 +10,7 @@ function Product() {
 
   return (
     <div>
-      <div className="flex flex-col max-w-2xl px-10 pt-16 mx-auto space-y-16 md:space-y-0 lg:px-0 md:max-w-3xl lg:max-w-4xl xl:max-w-6xl md:flex-row">
+      <div className="flex flex-col max-w-2xl px-10 py-16 mx-auto space-y-16 md:space-y-0 lg:px-0 md:max-w-3xl lg:max-w-4xl xl:max-w-6xl md:flex-row">
         <div className="w-56 h-full pr-5 top-5 lg:sticky">
           <FilterProducts />
         </div>
