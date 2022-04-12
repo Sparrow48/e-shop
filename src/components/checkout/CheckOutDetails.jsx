@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function CheckOutDetails(props) {
   const totalPrice = props.totalPrice + 1200;
@@ -24,11 +25,17 @@ function CheckOutDetails(props) {
           <p>৳{totalPrice}</p>
         </div>
       </div>
-      <div className="">
-        <button className="px-3 py-2 text-white bg-gray-500 rounded hover:bg-gray-400">
-          CHECKOUT
-        </button>
-      </div>
+
+      {props.flag === "true" ? (
+        <div className="">
+          <NavLink
+            to="/checkout"
+            className="px-3 py-2 text-white bg-gray-500 rounded hover:bg-gray-400"
+          >
+            CHECKOUT
+          </NavLink>
+        </div>
+      ) : null}
     </div>
   );
 }

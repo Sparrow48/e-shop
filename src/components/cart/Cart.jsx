@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import CartItems from "./CartItems";
 import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../../store/CartSlice";
-import CheckOutDetails from "./CheckOutDetails";
+import CheckOutDetails from "../checkout/CheckOutDetails";
 
 function Cart() {
   const items = useSelector((state) => state.cart.items);
@@ -66,6 +66,7 @@ function Cart() {
               <CheckOutDetails
                 totalQuantity={totalQuantity}
                 totalPrice={totalPrice}
+                flag="true"
               />
             </div>
           </div>
