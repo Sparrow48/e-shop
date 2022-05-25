@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const CartSlice = createSlice({
   name: "cart",
   initialState: {
-    items: JSON.parse(localStorage.getItem("cart") || []),
-    totalQuantity: JSON.parse(localStorage.getItem("total") || 0),
-    totalPrice: JSON.parse(localStorage.getItem("totalPrice") || 0),
+    items: JSON.parse(localStorage.getItem("cart")) || [],
+    totalQuantity: JSON.parse(localStorage.getItem("total")) || 0,
+    totalPrice: JSON.parse(localStorage.getItem("totalPrice")) || 0,
   },
   reducers: {
     addToCart(state, action) {
