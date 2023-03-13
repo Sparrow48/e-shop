@@ -11,9 +11,6 @@ function FilterProducts() {
   const [searchString, setSearchString] = useState("");
   const [category, setCategory] = useState([
     "All",
-    "Kitchen",
-    "Bedroom ",
-    "Dining Kids",
   ]);
 
   useEffect(() => {
