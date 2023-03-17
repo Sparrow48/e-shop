@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { debounce } from "../../utils/Debounce";
 import { signUpUser } from "./../../store/AuthSlice";
 import { AuthUrl, authKey } from "./../../config";
@@ -9,7 +9,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  let history = useHistory();
+  // let history = useHistory();
   let url = `${AuthUrl}signUp?key=${authKey}`;
 
   const { error, isAuthenticated } = useSelector((state) => state.auth);
@@ -35,11 +35,11 @@ function SignUp() {
     );
   };
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      history.push("/");
-    }
-  }, [history, isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     history.push("/");
+  //   }
+  // }, [history, isAuthenticated]);
 
   const optimise_EmailHandler = debounce(emailHandler, 500);
   const optimise_PasswordHandler = debounce(passwordHandler, 500);

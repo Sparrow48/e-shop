@@ -1,50 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { debounce } from "../../utils/Debounce";
-import { logInUser } from "./../../store/AuthSlice";
-import { AuthUrl, authKey } from "./../../config";
+import { userLogin } from "./../../store/reducer/AuthSlice";
 
 function LogIn() {
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState("");
-  const { error, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  let history = useHistory();
 
-  let url = `${AuthUrl}signInWithPassword?key=${authKey}`;
-
-  const emailHandler = (event) => {
-    setEmail(event.target.value);
+  const usernameHandler = (event) => {
+    setPhoneNumber(event.target.value);
   };
 
   const passwordHandler = (event) => {
     setPassword(event.target.value);
   };
 
-  const signUpHandler = (e) => {
-    e.preventDefault();
-    dispatch(
-      logInUser({
-        url,
-        email,
-        password,
-      })
-    );
-  };
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      history.push("/");
+  const loginHandler = (e) => {
+    try {
+      e.preventDefault();
+      const payload = {
+        username: phoneNumber,
+        password
+      }
+      dispatch(userLogin(payload))
+    } catch (error) {
+      console.error('LOGIN_ERROR => ', error);
     }
-  }, [history, isAuthenticated]);
+  }
 
-  const optimise_EmailHandler = debounce(emailHandler, 500);
-  const optimise_PasswordHandler = debounce(passwordHandler, 500);
+  const optimize_usernameHandler = debounce(usernameHandler, 500);
+  const optimize_PasswordHandler = debounce(passwordHandler, 500);
+
   return (
     <div>
       <div className="mt-24 text-center">
-        {/* <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <svg
             fill="none"
             viewBox="0 0 24 24"
@@ -58,7 +50,7 @@ function LogIn() {
               d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
             />
           </svg>
-        </div> */}
+        </div>
         <h2 className="text-4xl tracking-tight">Sign in into your account</h2>
         <span className="text-sm">
           <NavLink to="/signup" className="text-blue-500">
@@ -69,7 +61,7 @@ function LogIn() {
       <div className="flex justify-center mx-4 my-2 md:mx-0">
         <form
           className="w-full max-w-xl p-6 bg-white rounded-lg shadow-md"
-          onSubmit={signUpHandler}
+          onSubmit={(e) => loginHandler(e)}
         >
           <div className="flex flex-wrap mb-6 -mx-3">
             <div className="w-full px-3 mb-6 md:w-full">
@@ -77,12 +69,12 @@ function LogIn() {
                 className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                 htmlFor="Password"
               >
-                Email address
+                Username
               </label>
               <input
                 className="block w-full px-3 py-3 font-medium leading-tight text-gray-900 bg-white border border-gray-400 rounded-lg appearance-none focus:outline-none"
-                type="email"
-                onChange={optimise_EmailHandler}
+                placeholder="01711111111"
+                onChange={optimize_usernameHandler}
                 required
               />
             </div>
@@ -96,7 +88,7 @@ function LogIn() {
               <input
                 className="block w-full px-3 py-3 font-medium leading-tight text-gray-900 bg-white border border-gray-400 rounded-lg appearance-none focus:outline-none"
                 type="password"
-                onChange={optimise_PasswordHandler}
+                onChange={optimize_PasswordHandler}
                 required
               />
             </div>

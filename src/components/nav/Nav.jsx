@@ -2,18 +2,17 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import { authActions } from "../../store/AuthSlice";
 
 import Logo from "./Logo";
 
 function Nav() {
-  const cartQuantity = useSelector((state) => state.cart.totalQuantity);
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  // const cartQuantity = useSelector((state) => state.cart.totalQuantity);
+  // const { isAuthenticated } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
   const logOutHanlder = () => {
-    dispatch(authActions.logOut());
+    // dispatch(authActions.logOut());
   };
 
   return (
@@ -41,13 +40,13 @@ function Nav() {
                   height="20"
                 />
                 <span className="absolute flex items-center justify-center w-4 h-4 p-3 text-white transition-all duration-300 bg-yellow-600 rounded-full group-hover:bg-gray-800 top-10px right-16px ">
-                  {cartQuantity}
+                  {0}
                 </span>
               </span>
             </div>
           </NavLink>
 
-          {isAuthenticated ? (
+          {false ? (
             <NavLink className="flex space-x-1" to="/login">
               <h1 onClick={logOutHanlder}>LogOut</h1>
             </NavLink>
