@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ShowProduct from "./ShowProduct";
 import { fetchProduct } from "../../store/reducer/productSlice";
 
-function FeturedProducts() {
+function FeaturedProducts() {
 
   const { products } = useSelector(state => state.product)
 
@@ -46,4 +46,4 @@ function FeturedProducts() {
   );
 }
 
-export default FeturedProducts;
+export default FeaturedProducts;
