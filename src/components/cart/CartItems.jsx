@@ -13,7 +13,7 @@ function CartItems(props) {
   const increment = () => {
     dispatch(
       addToCart({
-        id: props.id,
+        _id: props._id,
         price: props.price,
         quantity: 1,
       })
@@ -23,7 +23,7 @@ function CartItems(props) {
   const removeItem = () => {
     dispatch(
       removeItemFromCart({
-        id: props.id,
+        _id: props._id,
         price: props.price,
         quantity: props.quantity,
         singleUnit: false,
@@ -34,7 +34,7 @@ function CartItems(props) {
   const decrement = () => {
     dispatch(
       removeItemFromCart({
-        id: props.id,
+        _id: props._id,
         price: props.price,
         quantity: 1,
         singleUnit: true,

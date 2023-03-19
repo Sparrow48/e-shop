@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { cartActions } from "./../../store/CartSlice";
+import { addToCart } from "../../store/reducer/productSlice";
 
 function ProductDetails() {
   const [value, setvalue] = useState(1);
@@ -34,10 +34,10 @@ function ProductDetails() {
     setvalue(updateValue);
   };
 
-  const addTocard = () => {
+  const addToCardHandler = () => {
     dispatch(
-      cartActions.addToCart({
-        id: product.id,
+      addToCart({
+        _id: product._id,
         title: product.title,
         value,
         price: product.price,
@@ -78,7 +78,7 @@ function ProductDetails() {
                 <NavLink
                   to="/cart"
                   className="px-3 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-500 w-fit"
-                  onClick={addTocard}
+                  onClick={addToCardHandler}
                 >
                   ADD TO CART
                 </NavLink>

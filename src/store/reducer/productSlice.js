@@ -96,9 +96,12 @@ const productSlice = createSlice({
         },
         removeItemFromCart(state, action) {
             const newItem = action.payload;
+            console.log(action.payload);
             const existingItem = state.items.find((item) => item._id === newItem._id);
             state.totalQuantity = state.totalQuantity - newItem.quantity;
             state.totalPrice = state.totalPrice - newItem.quantity * newItem.price;
+
+            console.log('existingItem => ', existingItem);
 
             if (existingItem.quantity > 1 && newItem.singleUnit) {
                 existingItem.quantity = existingItem.quantity - newItem.quantity;

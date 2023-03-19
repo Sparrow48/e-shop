@@ -32,8 +32,8 @@ function Cart() {
             <div>
               {items.map((item) => (
                 <CartItems
-                  key={item.id}
-                  id={item.id}
+                  key={item._id}
+                  _id={item._id}
                   title={item.name}
                   price={item.price}
                   image={item.image}
