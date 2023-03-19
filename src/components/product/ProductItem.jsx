@@ -5,7 +5,7 @@ function ProductItem(props) {
   console.log(props);
   return (
     <div className="flex flex-col space-y-3 max-h-52 sm:h-60 lg:w-72 lg:h-72">
-      <NavLink to={`/productDetails/${props.id}`}>
+      <NavLink to={`/productDetails/${props._id}`}>
         <img
           className="object-cover h-40 rounded sm:h-48 w-135 sm:w-135 lg:h-48 lg:w-72 "
           src={props.image}

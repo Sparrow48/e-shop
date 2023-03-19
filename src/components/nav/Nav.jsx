@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 import Logo from "./Logo";
 
 function Nav() {
-  // const cartQuantity = useSelector((state) => state.cart.totalQuantity);
+  const { totalQuantity } = useSelector((state) => state.product);
   // const { isAuthenticated } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function Nav() {
                   height="20"
                 />
                 <span className="absolute flex items-center justify-center w-4 h-4 p-3 text-white transition-all duration-300 bg-yellow-600 rounded-full group-hover:bg-gray-800 top-10px right-16px ">
-                  {0}
+                  {totalQuantity}
                 </span>
               </span>
             </div>

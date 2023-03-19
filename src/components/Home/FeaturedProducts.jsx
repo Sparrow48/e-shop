@@ -10,10 +10,11 @@ function FeaturedProducts() {
 
   const dispatch = useDispatch()
 
-  console.log('Product => ', products);
 
   useEffect(() => {
-    dispatch(fetchProduct())
+    if (Object.keys(products).length <= 0) {
+      dispatch(fetchProduct())
+    }
   }, [])
 
   return (
@@ -26,11 +27,11 @@ function FeaturedProducts() {
             <div className="flex flex-col items-center justify-center py-16 space-y-5 sm:space-y-8 sm:py-12 lg:space-y-0 lg:space-x-8 lg:flex-row">
               {Object.values(products).slice(0, 3).map((product) => (
                 <ShowProduct
-                  key={product.id}
+                  key={product._id}
                   image={product.image}
                   title={product.title}
                   price={product.price}
-                  id={product.id}
+                  _id={product._id}
                 />
               ))}
             </div>

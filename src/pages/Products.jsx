@@ -55,11 +55,11 @@ function Product() {
                 {Object.values(updateProducts)?.map((product) => (
                   console.log(product),
                   <ProductItem
-                    key={product.id}
+                    key={product._id}
                     image={product.image}
                     title={product.title}
                     price={product.price}
-                    id={product.id}
+                    _id={product._id}
                   />
                 ))}
               </div>
