@@ -23,6 +23,15 @@ export const userLogin = createAsyncThunk(
   }
 )
 
+export const userSignUp = createAsyncThunk(
+  'auth/userSignUp',
+  async (payload) => {
+    const response = await instance.post('./auth/user', payload)
+    window.location.replace('/login');
+  }
+
+)
+
 
 const AuthSlice = createSlice({
   name: "auth",

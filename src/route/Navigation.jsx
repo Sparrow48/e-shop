@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import LogIn from '../components/auth/LogIn';
 import CommonRoute from './CommonRoute';
 import Profile from '../pages/Profile';
+import SignUp from './../components/auth/SignUp'
+
 
 const Navigation = () => {
 
@@ -25,6 +27,7 @@ const Navigation = () => {
             <CommonRoute />
             <Routes>
                 <Route path={'/login'} element={<LogIn />} />
+                <Route path={'/signup'} element={<SignUp />} />
             </Routes>
         </div>
     );

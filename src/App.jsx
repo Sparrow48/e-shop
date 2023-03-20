@@ -5,6 +5,7 @@ import Nav from "./components/nav/Nav";
 import Footer from "./components/footer/Footer";
 import Navigation from "./route/Navigation";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css'
 
 function App() {
 
