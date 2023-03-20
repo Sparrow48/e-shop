@@ -3,15 +3,14 @@ import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { debounce } from "../../utils/Debounce";
 import { userLogin } from "./../../store/reducer/AuthSlice";
+import PhoneFormItem from "../Form/PhoneFormItem";
 
 function LogIn() {
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
+  const [isUsernameValid, setUsernameValidation] = useState(false)
 
-  const usernameHandler = (event) => {
-    setPhoneNumber(event.target.value);
-  };
+  const dispatch = useDispatch();
 
   const passwordHandler = (event) => {
     setPassword(event.target.value);
@@ -21,7 +20,7 @@ function LogIn() {
     try {
       e.preventDefault();
       const payload = {
-        username: phoneNumber,
+        username,
         password
       }
       dispatch(userLogin(payload))
@@ -30,7 +29,6 @@ function LogIn() {
     }
   }
 
-  const optimize_usernameHandler = debounce(usernameHandler, 500);
   const optimize_PasswordHandler = debounce(passwordHandler, 500);
 
   return (
@@ -71,12 +69,8 @@ function LogIn() {
               >
                 Username
               </label>
-              <input
-                className="block w-full px-3 py-3 font-medium leading-tight text-gray-900 bg-white border border-gray-400 rounded-lg appearance-none focus:outline-none"
-                placeholder="01711111111"
-                onChange={optimize_usernameHandler}
-                required
-              />
+              <PhoneFormItem setUsername={setUsername} setUsernameValidation={setUsernameValidation} />
+              {(!isUsernameValid && username.length) ? <p className=" text-red-600 pt-1">Invalid username</p> : ''}
             </div>
             <div className="w-full px-3 mb-6 md:w-full">
               <label
@@ -112,7 +106,7 @@ function LogIn() {
               </div>
             </div>
             <div className="w-full px-3 mb-6 md:w-full">
-              <button className="block w-full px-3 py-3 font-bold leading-tight text-gray-100 bg-blue-600 border border-gray-200 rounded-lg appearance-none hover:bg-blue-500 focus:outline-none active:bg-white focus:border-gray-500">
+              <button disabled={!isUsernameValid} className="block w-full px-3 py-3 font-bold leading-tight text-gray-100 bg-blue-600 border border-gray-200 rounded-lg appearance-none hover:bg-blue-500 focus:outline-none active:bg-white focus:border-gray-500 disabled:bg-gray-500 disabled:opacity-25">
                 Sign in
               </button>
             </div>
