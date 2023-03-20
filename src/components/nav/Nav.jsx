@@ -7,12 +7,13 @@ import Logo from "./Logo";
 
 function Nav() {
   const { totalQuantity } = useSelector((state) => state.product);
-  // const { isAuthenticated } = useSelector((state) => state.auth);
+  let isLoggedIn = localStorage.getItem('sessionId') ? true : false;
 
   const dispatch = useDispatch();
 
-  const logOutHanlder = () => {
-    // dispatch(authActions.logOut());
+  const logOutHandler = () => {
+    localStorage.clear();
+    window.location.replace('/login');
   };
 
   return (
@@ -46,9 +47,9 @@ function Nav() {
             </div>
           </NavLink>
 
-          {false ? (
+          {isLoggedIn ? (
             <NavLink className="flex space-x-1" to="/login">
-              <h1 onClick={logOutHanlder}>LogOut</h1>
+              <h1 onClick={logOutHandler}>LogOut</h1>
             </NavLink>
           ) : (
             <NavLink className="flex space-x-1" to="/login">

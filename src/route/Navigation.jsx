@@ -1,36 +1,38 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home';
-import AboutUs from '../pages/AboutUs';
-import Product from '../pages/Products';
-// import Product from '../components/product/Products';
-// import ProductDetails from '../components/product/ProductDetails';
-// import Cart from '../components/cart/Cart';
-// import Checkout from '../components/checkout/Checkout';
-// import AboutUs from '../components/AboutUs';
 import LogIn from '../components/auth/LogIn';
-import ProductDetails from '../pages/ProductDetails';
-import Cart from '../components/cart/Cart';
-import Checkout from '../components/checkout/Checkout';
-// import SignUp from '../components/auth/SignUp';
-
+import CommonRoute from './CommonRoute';
+import Profile from '../pages/Profile';
 
 const Navigation = () => {
 
+    let loggedIn = localStorage.getItem('sessionId') ? true : false;
+
+    if (loggedIn) {
+        return (
+            <>
+                <CommonRoute />
+                <Routes>
+                    <Route path={'/profile'} element={<Profile />} />
+                </Routes>
+            </>
+
+        );
+    }
+
+    return (
+        <div>
+            <CommonRoute />
+            <Routes>
+                <Route path={'/login'} element={<LogIn />} />
+            </Routes>
+        </div>
+    );
 
     return (
         <>
             <Routes>
-                <Route exact path={'/'} element={<Home />} />
                 <Route exact path={'/login'} element={<LogIn />} />
-                <Route exact path={'/about'} element={<AboutUs />} />
-                <Route exact path={'/product'} element={<Product />} />
-                <Route exact path={'/productDetails/:_id'} element={<ProductDetails />} />
-                <Route exact path={'/cart'} element={<Cart />} />
-                <Route exact path={'/checkout'} element={<Checkout />} />
-                {/*
-                <Route exact path={'/login'} element={<LogIn />} />
-                <Route exact path={'/signUp'} element={<SignUp />} /> */}
 
             </Routes>
         </>

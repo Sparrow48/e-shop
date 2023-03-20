@@ -6,6 +6,8 @@ import Logo from "./Logo";
 function Menu() {
   const [showMenu, setShowMenu] = useState(false);
   const linkDesign = " my-3";
+  let isLoggedIn = localStorage.getItem('sessionId') ? true : false;
+
 
   const toggle = () => {
     setShowMenu(!showMenu);
@@ -37,6 +39,21 @@ function Menu() {
                   >
                     Product
                   </NavLink>
+                  {isLoggedIn ? (
+                    <NavLink onClick={toggle} className="flex space-x-1" to="/login">
+                      <h1 onClick={logOutHandler}>LogOut</h1>
+                    </NavLink>
+                  ) : (
+                    <NavLink onClick={toggle} className="flex space-x-1" to="/login">
+                      <h1>Login</h1>
+                      <Icon
+                        icon="clarity:login-line"
+                        color="gray"
+                        width="20"
+                        height="20"
+                      />
+                    </NavLink>
+                  )}
                 </ul>
               </div>
             </div>

@@ -10,8 +10,13 @@ export const userLogin = createAsyncThunk(
   async (payload) => {
     try {
       const response = await instance.post('/auth/login', payload)
-      console.log(response);
+      localStorage.setItem(
+        'sessionId',
+        (response.data.accessToken)
+      );
 
+      window.location.replace('/profile');
+      return response.data;
     } catch (error) {
       return Promise.reject(error)
     }

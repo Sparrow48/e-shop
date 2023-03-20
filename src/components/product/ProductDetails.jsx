@@ -9,9 +9,6 @@ function ProductDetails() {
   const params = useParams();
   const dispatch = useDispatch();
   const { products, show } = useSelector((state) => state.product);
-  // console.log(products);
-  // console.log(params.productId);
-  // console.log(show);
 
   const filterProductById = products.filter((product) => {
     return product.id === params.productId;
