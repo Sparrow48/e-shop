@@ -21,7 +21,7 @@ function FeaturedProducts() {
     <div>
       {Object.keys(products).length && (
         <div className="py-10 bg-slate-200">
-          <div className="max-w-2xl mx-auto lg:max-w-6xl ">
+          <div className="max-w-2xl mx-auto px-4  lg:max-w-6xl ">
             <h1 className="text-3xl text-center ">Featured Products</h1>
             <p className="w-24 mx-auto border-b-4 border-yellow-600"></p>
             <div className="flex flex-col items-center justify-center py-16 space-y-5 sm:space-y-8 sm:py-12 lg:space-y-0 lg:space-x-8 lg:flex-row">

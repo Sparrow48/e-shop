@@ -4,6 +4,7 @@ import LogIn from '../components/auth/LogIn';
 import CommonRoute from './CommonRoute';
 import Profile from '../pages/Profile';
 import SignUp from './../components/auth/SignUp'
+import History from '../pages/History';
 
 
 const Navigation = () => {
@@ -16,6 +17,7 @@ const Navigation = () => {
                 <CommonRoute />
                 <Routes>
                     <Route path={'/profile'} element={<Profile />} />
+                    <Route path={'/history'} element={<History />} />
                 </Routes>
             </>
 
@@ -28,17 +30,10 @@ const Navigation = () => {
             <Routes>
                 <Route path={'/login'} element={<LogIn />} />
                 <Route path={'/signup'} element={<SignUp />} />
+                <Route path={'/*'} element={<LogIn />} />
+
             </Routes>
         </div>
-    );
-
-    return (
-        <>
-            <Routes>
-                <Route exact path={'/login'} element={<LogIn />} />
-
-            </Routes>
-        </>
     );
 };
 
