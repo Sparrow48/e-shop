@@ -1,0 +1,5 @@
+{
+    "version": 2,
+    "name": "e-shop",
+    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]   
+ }
