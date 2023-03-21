@@ -5,7 +5,7 @@ import { DEFAULT_COUNTRY_CODE } from '../../utils/constant'
 import 'react-phone-input-2/lib/style.css'
 import { debounce } from '../../utils/Debounce'
 
-const PhoneFormItem = ({ setUsername, setUsernameValidation }) => {
+const PhoneFormItem = ({ setUsername, setUsernameValidation, className = '' }) => {
 
     const usernameHandler = (phoneNumber, country) => {
         const { countryCode } = country
@@ -17,12 +17,12 @@ const PhoneFormItem = ({ setUsername, setUsernameValidation }) => {
     const optimism_usernameHandler = debounce(usernameHandler, 500);
 
     return (
-        <>
+        <div className={className}>
             <PhoneInput
                 country={DEFAULT_COUNTRY_CODE}
                 onChange={optimism_usernameHandler}
             />
-        </>
+        </div>
     )
 }
 

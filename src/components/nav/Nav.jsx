@@ -14,7 +14,7 @@ function Nav() {
   const dispatch = useDispatch();
 
   const logOutHandler = () => {
-    localStorage.clear();
+    localStorage.removeItem("sessionId");
     window.location.replace('/login');
   };
 
