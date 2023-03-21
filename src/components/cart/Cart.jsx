@@ -2,18 +2,16 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import CartItems from "./CartItems";
 import { useSelector, useDispatch } from "react-redux";
-import { cartActions } from "../../store/CartSlice";
 import CheckOutDetails from "../checkout/CheckOutDetails";
+import { removeAllItems } from '../../store/reducer/productSlice'
 
 function Cart() {
-  const items = useSelector((state) => state.cart.items);
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
-  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const { items, totalPrice, totalQuantity } = useSelector((state) => state.product);
   const dispatch = useDispatch();
   // console.log(items);
 
-  const removeAllItems = () => {
-    dispatch(cartActions.removeAllItems());
+  const removeAllItemsHandler = () => {
+    dispatch(removeAllItems());
   };
 
   return (
@@ -34,8 +32,8 @@ function Cart() {
             <div>
               {items.map((item) => (
                 <CartItems
-                  key={item.id}
-                  id={item.id}
+                  key={item._id}
+                  _id={item._id}
                   title={item.name}
                   price={item.price}
                   image={item.image}
@@ -55,7 +53,7 @@ function Cart() {
                   Continue Shoping
                 </NavLink>
                 <button
-                  onClick={removeAllItems}
+                  onClick={removeAllItemsHandler}
                   className="px-3 py-2 text-white bg-gray-500 rounded hover:bg-gray-400"
                 >
                   Clear Cart

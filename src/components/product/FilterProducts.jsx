@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "./../../utils/Debounce";
 import { useSelector, useDispatch } from "react-redux";
-import { productActions } from "./../../store/ProductSlice";
+import { fetchProduct, filterProducts } from "../../store/reducer/productSlice";
 
 function FilterProducts() {
-  const { products } = useSelector((state) => state.product);
+  const { updateProducts: products } = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
   const [active, setActive] = useState("All");
@@ -16,7 +16,7 @@ function FilterProducts() {
   useEffect(() => {
     const categories = [
       ...category,
-      ...products.map((product) => product.category),
+      ...Object.values(products).map((product) => product.category),
     ];
     const distinctCategory = new Set(categories);
     setCategory(Array.from(distinctCategory));
@@ -24,10 +24,10 @@ function FilterProducts() {
   }, [products]);
 
   useEffect(() => {
-    dispatch(productActions.filterProducts({ searchString, active }));
+    dispatch(filterProducts({ searchString, active }));
   }, [searchString, active, dispatch]);
 
-  const filterBycategory = (key = "") => {
+  const filterByCategory = (key = "") => {
     setActive(key);
   };
 
@@ -62,7 +62,7 @@ function FilterProducts() {
                 active === item ? "pt-2  border-b-2  border-blue-500" : "pt-2 "
               }
               key={item}
-              onClick={() => filterBycategory(item)}
+              onClick={() => filterByCategory(item)}
             >
               {item}
             </button>

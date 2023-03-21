@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Icon } from "@iconify/react";
-import { cartActions } from "../../store/CartSlice";
+import { removeAllItems, removeItemFromCart, addToCart } from '../../store/reducer/productSlice'
+
 
 function CartItems(props) {
   const dispatch = useDispatch();
@@ -11,8 +12,8 @@ function CartItems(props) {
 
   const increment = () => {
     dispatch(
-      cartActions.addToCart({
-        id: props.id,
+      addToCart({
+        _id: props._id,
         price: props.price,
         quantity: 1,
       })
@@ -21,8 +22,8 @@ function CartItems(props) {
 
   const removeItem = () => {
     dispatch(
-      cartActions.removeItemFromCart({
-        id: props.id,
+      removeItemFromCart({
+        _id: props._id,
         price: props.price,
         quantity: props.quantity,
         singleUnit: false,
@@ -32,8 +33,8 @@ function CartItems(props) {
 
   const decrement = () => {
     dispatch(
-      cartActions.removeItemFromCart({
-        id: props.id,
+      removeItemFromCart({
+        _id: props._id,
         price: props.price,
         quantity: 1,
         singleUnit: true,
