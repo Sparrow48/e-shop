@@ -1,7 +1,7 @@
 import React from "react";
 import HeroImage from "./../../assets/hero.png";
 
-function Hero() {
+const Hero = () => {
   return (
     <div className="grid items-center justify-center px-10 py-12 mx-auto sm:py-24 md:py-48 lg:px-0 lg:grid-cols-2 gap-36 lg:max-w-6xl">
       <div className="flex flex-col space-y-7">

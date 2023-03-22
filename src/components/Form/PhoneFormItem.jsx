@@ -1,9 +1,12 @@
 import React from 'react'
 import { isPhoneNoValid } from '../../utils/index'
-import PhoneInput from 'react-phone-input-2'
+// import PhoneInput from 'react-phone-input-2'
 import { DEFAULT_COUNTRY_CODE } from '../../utils/constant'
 import 'react-phone-input-2/lib/style.css'
 import { debounce } from '../../utils/Debounce'
+import PI from "react-phone-input-2";
+
+const ReactPhoneInput = PI.default ? PI.default : PI;
 
 const PhoneFormItem = ({ setUsername, setUsernameValidation, className = '' }) => {
 
@@ -18,7 +21,7 @@ const PhoneFormItem = ({ setUsername, setUsernameValidation, className = '' }) =
 
     return (
         <div className={className}>
-            <PhoneInput
+            <ReactPhoneInput
                 country={DEFAULT_COUNTRY_CODE}
                 onChange={optimism_usernameHandler}
             />

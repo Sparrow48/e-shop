@@ -7,7 +7,7 @@ import { Dropdown, Avatar, Navbar } from "flowbite-react";
 
 import Logo from "./Logo";
 
-function Nav() {
+const Nav = () => {
   const { totalQuantity } = useSelector((state) => state.product);
   let isLoggedIn = localStorage.getItem('sessionId') ? true : false;
 

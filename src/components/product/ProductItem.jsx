@@ -1,8 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function ProductItem(props) {
-  console.log(props);
+const ProductItem = (props) => {
   return (
     <div className="flex flex-col space-y-3 max-h-52 sm:h-60 lg:w-72 lg:h-72">
       <NavLink to={`/productDetails/${props._id}`}>

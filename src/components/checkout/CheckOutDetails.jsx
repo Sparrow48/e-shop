@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function CheckOutDetails(props) {
+const CheckOutDetails = (props) => {
   const totalPrice = props.totalPrice + 1200;
   const style = "grid  grid-cols-checkout_item gap-8 md:gap-32";
   return (

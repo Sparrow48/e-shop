@@ -3,7 +3,7 @@ import { debounce } from "./../../utils/Debounce";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProduct, filterProducts } from "../../store/reducer/productSlice";
 
-function FilterProducts() {
+const FilterProducts = () => {
   const { updateProducts: products } = useSelector((state) => state.product);
   const dispatch = useDispatch();
 

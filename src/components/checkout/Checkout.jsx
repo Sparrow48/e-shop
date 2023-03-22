@@ -7,7 +7,7 @@ import { debounce } from "../../utils/Debounce";
 import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
 
-function Checkout() {
+const Checkout = (props) => {
   const { totalPrice, totalQuantity, items } = useSelector((state) => state.product);
   const { user } = useSelector((state) => state.user);
 

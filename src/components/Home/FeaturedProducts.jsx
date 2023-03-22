@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ShowProduct from "./ShowProduct";
 import { fetchProduct } from "../../store/reducer/productSlice";
 
-function FeaturedProducts() {
+const FeaturedProducts = () => {
 
   const { products } = useSelector(state => state.product)
 

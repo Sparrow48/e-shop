@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import { removeAllItems, removeItemFromCart, addToCart } from '../../store/reducer/productSlice'
 
 
-function CartItems(props) {
+const CartItems = (props) => {
   const dispatch = useDispatch();
 
   const opacity =

@@ -5,7 +5,7 @@ import { debounce } from "../../utils/Debounce";
 import PhoneFormItem from "../Form/PhoneFormItem";
 import { userSignUp } from "../../store/reducer/AuthSlice";
 
-function SignUp() {
+const SignUp = () => {
   const [username, setUsername] = useState("");
   const [name, setName] = useState('')
   const [password, setPassword] = useState("");

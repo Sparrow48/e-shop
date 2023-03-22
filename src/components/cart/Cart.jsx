@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CheckOutDetails from "../checkout/CheckOutDetails";
 import { removeAllItems } from '../../store/reducer/productSlice'
 
-function Cart() {
+const Cart = () => {
   const { items, totalPrice, totalQuantity } = useSelector((state) => state.product);
   const dispatch = useDispatch();
   // console.log(items);

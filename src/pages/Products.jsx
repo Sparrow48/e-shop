@@ -5,7 +5,7 @@ import ProductItem from "../components/product/ProductItem";
 import FeaturedProducts from "../components/Home/FeaturedProducts";
 import { fetchProduct } from "../store/reducer/productSlice";
 
-function Product() {
+const Product = () => {
 
   const dispatch = useDispatch()
   const { updateProducts, products, show = true } = useSelector(

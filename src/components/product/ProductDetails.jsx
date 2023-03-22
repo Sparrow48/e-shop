@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart } from "../../store/reducer/productSlice";
 
-function ProductDetails() {
+const ProductDetails = () => {
   const [value, setvalue] = useState(1);
   const params = useParams();
   const dispatch = useDispatch();

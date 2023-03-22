@@ -5,7 +5,7 @@ import { debounce } from "../../utils/Debounce";
 import { userLogin } from "./../../store/reducer/AuthSlice";
 import PhoneFormItem from "../Form/PhoneFormItem";
 
-function LogIn() {
+const LogIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isUsernameValid, setUsernameValidation] = useState(false)
@@ -69,7 +69,7 @@ function LogIn() {
               >
                 Username
               </label>
-              <PhoneFormItem setUsername={setUsername} setUsernameValidation={setUsernameValidation} />
+              <PhoneFormItem setUsername={setUsername} setUsernameValidation={setUsernameValidation} className='' />
               {(!isUsernameValid && username.length) ? <p className=" text-red-600 pt-1">Invalid username</p> : ''}
             </div>
             <div className="w-full px-3 mb-6 md:w-full">
@@ -117,4 +117,6 @@ function LogIn() {
   );
 }
 
-export default LogIn;
+
+export default LogIn
+

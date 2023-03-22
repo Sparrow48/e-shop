@@ -1,7 +1,7 @@
 import React from "react";
 import HeroImage from "../assets/hero.png";
 
-function AboutUs() {
+const AboutUs = () => {
   return (
     <div>
       <div className="grid items-center justify-center gap-20 px-10 py-12 mx-auto sm:py-24 md:py-48 lg:px-0 lg:grid-cols-2 lg:max-w-6xl">

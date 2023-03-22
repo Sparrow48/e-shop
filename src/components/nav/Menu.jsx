@@ -2,7 +2,7 @@ import React from "react";
 import TopHeader from "./mobileHeader/TopHeader";
 import TopMenu from "./mobileHeader/TopMenu";
 
-function Menu() {
+const Menu = () => {
 
   return (
     <>
