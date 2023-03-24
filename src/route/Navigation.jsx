@@ -17,10 +17,9 @@ const Navigation = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (Object.keys(user).length <= 0) {
+        if (Object.keys(user).length <= 0 && loggedIn) {
             dispatch(fetchUserProfile())
         }
-
     }, [loggedIn])
 
     if (loggedIn) {
@@ -41,9 +40,8 @@ const Navigation = () => {
         <div>
             <CommonRoute />
             <Routes>
-                <Route path={'/login'} element={<LogIn />} />
-                <Route path={'/signup'} element={<SignUp />} />
-                <Route path={'/*'} element={<LogIn />} />
+                <Route exact path={'/login'} element={<LogIn />} />
+                <Route exact path={'/signup'} element={<SignUp />} />
 
             </Routes>
         </div>
