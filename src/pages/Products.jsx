@@ -18,7 +18,6 @@ const Product = () => {
     }
   }, [])
 
-  console.log(updateProducts);
   return (
     <div>
       <div className="flex flex-col max-w-2xl px-10 py-16 mx-auto space-y-16 md:space-y-0 lg:px-0 md:max-w-3xl lg:max-w-4xl xl:max-w-6xl md:flex-row">
@@ -53,7 +52,6 @@ const Product = () => {
 
               <div className="grid max-w-2xl grid-cols-1 pt-5 mx-auto lg:max-w-5xl lg:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-12">
                 {Object.values(updateProducts)?.map((product) => (
-                  console.log(product),
                   <ProductItem
                     key={product._id}
                     image={product.image}

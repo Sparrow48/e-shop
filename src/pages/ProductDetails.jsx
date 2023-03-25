@@ -10,9 +10,6 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const { products, show = true } = useSelector((state) => state.product);
   const [product, setProduct] = useState({})
-  // console.log(products);
-  // console.log(params.productId);
-  // console.log(show);
 
   useEffect(() => {
     if (Object.keys(products)?.length <= 0) {
@@ -77,10 +74,10 @@ const ProductDetails = () => {
                 <h1 className="text-4xl font-bold">{product.title}</h1>
                 <h2 className="text-xl text-yellow-600">{product.price} tk</h2>
                 <p className="leading-8 text-gray-600">{product.description}</p>
-                <p>Available : In Stock ({product.Available})</p>
+                <p>Available : In Stock ({product.available})</p>
                 <p>Category : {product.category}</p>
                 <p>Brand : {product.brand}</p>
-                <p>SKU : {product.psn}</p>
+                <p>SKU : {product.pId}</p>
                 <p className="border-b-2 border-gray-400"></p>
                 <div className="flex ml-2 text-3xl font-bold space-x-7">
                   <button onClick={decrement}>-</button>

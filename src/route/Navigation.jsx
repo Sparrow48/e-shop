@@ -8,6 +8,7 @@ import History from '../pages/History';
 import { fetchUserProfile } from '../store/reducer/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import TrackOrder from '../pages/TrackOrder';
+import ComingSoon from '../pages/ComingSoon';
 
 
 const Navigation = () => {
@@ -17,10 +18,9 @@ const Navigation = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (Object.keys(user).length <= 0) {
+        if (Object.keys(user).length <= 0 && loggedIn) {
             dispatch(fetchUserProfile())
         }
-
     }, [loggedIn])
 
     if (loggedIn) {
@@ -31,6 +31,8 @@ const Navigation = () => {
                     <Route path={'/profile'} element={<Profile />} />
                     <Route path={'/history'} element={<History />} />
                     <Route path={'/track-order'} element={<TrackOrder />} />
+                    <Route path={'/dashboard'} element={<ComingSoon />} />
+                    <Route path={'/settings'} element={<ComingSoon />} />
                 </Routes>
             </>
 
@@ -41,9 +43,8 @@ const Navigation = () => {
         <div>
             <CommonRoute />
             <Routes>
-                <Route path={'/login'} element={<LogIn />} />
-                <Route path={'/signup'} element={<SignUp />} />
-                <Route path={'/*'} element={<LogIn />} />
+                <Route exact path={'/login'} element={<LogIn />} />
+                <Route exact path={'/signup'} element={<SignUp />} />
 
             </Routes>
         </div>

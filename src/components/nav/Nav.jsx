@@ -1,22 +1,13 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import CP from './../../assets/cp.png'
-import { Dropdown, Avatar, Navbar } from "flowbite-react";
-
+import ProfileDropdown from "./ProfileDropdown";
 import Logo from "./Logo";
 
 const Nav = () => {
   const { totalQuantity } = useSelector((state) => state.product);
   let isLoggedIn = localStorage.getItem('sessionId') ? true : false;
-
-  const dispatch = useDispatch();
-
-  const logOutHandler = () => {
-    localStorage.removeItem("sessionId");
-    window.location.replace('/login');
-  };
 
   return (
     <div className="border-b  sticky top-0 z-50 bg-white">
@@ -51,41 +42,7 @@ const Nav = () => {
           </NavLink>
 
           {isLoggedIn ? (
-            <>
-              <div className="flex md:order-2">
-                <Dropdown
-                  arrowIcon={false}
-                  inline={true}
-                  label={<Avatar alt="User settings" img={CP} rounded={true} />}
-                >
-                  <Dropdown.Header>
-                    <span className="block text-sm">
-                      Bonnie Green
-                    </span>
-                    <span className="block truncate text-sm font-medium">
-                      name@flowbite.com
-                    </span>
-                  </Dropdown.Header>
-                  <Dropdown.Item>
-                    Dashboard
-                  </Dropdown.Item>
-                  <Dropdown.Item>
-                    Settings
-                  </Dropdown.Item>
-                  <Dropdown.Item>
-                    Earnings
-                  </Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Item>
-                    <NavLink onClick={logOutHandler} className="flex space-x-1" to="/login">
-                      <h1 >LogOut</h1>
-                    </NavLink>
-                  </Dropdown.Item>
-                </Dropdown>
-              </div>
-            </>
-
-
+            <ProfileDropdown />
           ) : (
             <NavLink className="flex space-x-1" to="/login">
               <h1>Login</h1>

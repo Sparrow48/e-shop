@@ -22,7 +22,6 @@ const SignUp = () => {
   };
 
   const signUpHandler = (e) => {
-    console.log('signUpHandler');
     e.preventDefault();
     let payload = {
       name,

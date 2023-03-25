@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import CP from '../../../assets/cp.png'
 import SFLogo from '../../../assets/e-shop.png'
 import { NavLink } from 'react-router-dom';
+import ProfileDropdown from '../ProfileDropdown';
 
 
 
@@ -19,7 +20,7 @@ const TopHeader = () => {
                 </NavLink>
                 <div className='flex items-center px-4'>
                     {isLoggedIn ?
-                        <NavLink to='/profile' className='text-white p-2  font-medium'><img src={CP} className='relative mx-auto rounded-full overflow-hidden w-8 h-8' alt="" /></NavLink>
+                        <ProfileDropdown />
 
                         :
                         <div>

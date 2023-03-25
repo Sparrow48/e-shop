@@ -8,7 +8,6 @@ import { removeAllItems } from '../../store/reducer/productSlice'
 const Cart = () => {
   const { items, totalPrice, totalQuantity } = useSelector((state) => state.product);
   const dispatch = useDispatch();
-  // console.log(items);
 
   const removeAllItemsHandler = () => {
     dispatch(removeAllItems());
