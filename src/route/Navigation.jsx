@@ -8,6 +8,7 @@ import History from '../pages/History';
 import { fetchUserProfile } from '../store/reducer/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import TrackOrder from '../pages/TrackOrder';
+import ComingSoon from '../pages/ComingSoon';
 
 
 const Navigation = () => {
@@ -30,6 +31,8 @@ const Navigation = () => {
                     <Route path={'/profile'} element={<Profile />} />
                     <Route path={'/history'} element={<History />} />
                     <Route path={'/track-order'} element={<TrackOrder />} />
+                    <Route path={'/dashboard'} element={<ComingSoon />} />
+                    <Route path={'/settings'} element={<ComingSoon />} />
                 </Routes>
             </>
 

@@ -9,9 +9,7 @@ const Hero = () => {
           Design Your Comfort Zone
         </h1>
         <p className="text-sm text-gray-500 md:text-xl">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium,
-          praesentium asperiores suscipit vel eos neque quo delectus
-          exercitationem ipsam accusamus sint voluptates. Nam, quos accusamus?
+          Transform your space into a stylish oasis with e-Shop's wide selection of high-quality furniture. From living room to office, our affordable prices and exceptional customer service make us the go-to destination for furniture shopping online. Shop with us now and elevate your space to the next level.
         </p>
         <a href="/" className=" w-fit">
           <h1 className="px-4 py-2 text-xl text-white bg-yellow-600 rounded hover:bg-yellow-500 w-fit">
