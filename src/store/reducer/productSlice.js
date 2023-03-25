@@ -14,7 +14,6 @@ export const fetchProduct = createAsyncThunk(
     async () => {
         try {
             const response = await instance.get('/product')
-            console.log(response);
             return response.data
 
         } catch (error) {
@@ -25,7 +24,6 @@ export const fetchProduct = createAsyncThunk(
 
 const updateProductsByFilter = (state, products) => {
     products.map((product) => {
-        console.log(product);
         state.updateProducts[product?._id] = product
     })
 }
@@ -60,16 +58,12 @@ const productSlice = createSlice({
                             .includes(searchString.toLowerCase());
                     });
                 }
-                // state.updateProducts = [];
-                // state.updateProducts.push(...filteredProducts);
-                console.log(filteredProducts);
                 updateProductsByFilter(state, filteredProducts)
 
             }
         },
 
         addToCart(state, action) {
-            console.log('product => ', action.payload);
             const newItem = action.payload;
             const existingItem = state.items.find((item) => item._id === newItem._id);
             state.totalQuantity = state.totalQuantity + newItem.quantity;
@@ -96,12 +90,9 @@ const productSlice = createSlice({
         },
         removeItemFromCart(state, action) {
             const newItem = action.payload;
-            console.log(action.payload);
             const existingItem = state.items.find((item) => item._id === newItem._id);
             state.totalQuantity = state.totalQuantity - newItem.quantity;
             state.totalPrice = state.totalPrice - newItem.quantity * newItem.price;
-
-            console.log('existingItem => ', existingItem);
 
             if (existingItem.quantity > 1 && newItem.singleUnit) {
                 existingItem.quantity = existingItem.quantity - newItem.quantity;
