@@ -22,6 +22,8 @@ module.exports = {
         cart_img: " 100px 150px",
         cart_img_mobile: " 75px 75px",
         checkout_item: "1fr 1fr",
+        "order-item": '10px 1fr 100px',
+        "order-item-mobile": '10px 150px 75px'
       },
     },
   },
