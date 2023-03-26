@@ -53,13 +53,13 @@ const History = () => {
                         {Object.values(orders)?.map((order, index) => {
                             return (<Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                 <Table.Cell>
-                                    #481{index}
+                                    #{order?.order}
                                 </Table.Cell>
                                 <Table.Cell>
                                     {moment(order?.createdAt).format('ll')}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    Pending
+                                    {order?.deliveryStatus}
                                 </Table.Cell>
                                 <Table.Cell>
                                     {order?.amount} tk
@@ -82,7 +82,7 @@ const History = () => {
                                 <ul className=' flex flex-col w-full'>
                                     <li className='flex justify-between border-b-2'>
                                         <p className=' pl-4 py-2'>ORDER NO</p>
-                                        <p className=' pr-4 py-2'>#481{index}</p>
+                                        <p className=' pr-4 py-2'>#{order?.order}</p>
                                     </li>
                                     <li className='flex justify-between border-b-2'>
                                         <p className=' pl-4 py-2'>ORDER DATE</p>
@@ -90,7 +90,7 @@ const History = () => {
                                     </li>
                                     <li className='flex justify-between border-b-2'>
                                         <p className=' pl-4 py-2'>ORDER STATUS</p>
-                                        <p className=' pr-4 py-2'>Pending</p>
+                                        <p className=' pr-4 py-2'>{order?.deliveryStatus}</p>
                                     </li>
                                     <li className='flex justify-between border-b-2'>
                                         <p className=' pl-4 py-2'>AMOUNT</p>

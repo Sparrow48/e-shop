@@ -6,7 +6,7 @@ const TopMenu = () => {
         <div className='border-b bg-white'>
             <div className=' flex py-3 mx-2 space-x-5 justify-center'>
                 <NavLink to='/'>Home</NavLink>
-                <NavLink to='/product'>Product</NavLink>
+                <NavLink to='/products'>Product</NavLink>
                 <NavLink to='/history'>History</NavLink>
                 <NavLink to='/about'>About</NavLink>
             </div>

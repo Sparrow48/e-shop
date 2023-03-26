@@ -6,12 +6,15 @@ import { NavLink } from 'react-router-dom'
 const ViewHistoryDetailsModal = ({ _id, visibleModal, toggleModal }) => {
     const { orders } = useSelector(state => state.user)
     const style = "grid  grid-cols-checkout_item gap-4 md:gap-16";
+    const blocksItem = 'flex justify-between'
+    const divider = 'border-b-2 -mx-2'
     const onClick = () => {
 
     }
     const onClose = () => {
         toggleModal()
     }
+    console.log(orders[_id]);
 
     return (
         <>
@@ -20,60 +23,59 @@ const ViewHistoryDetailsModal = ({ _id, visibleModal, toggleModal }) => {
                 onClose={onClose}
             >
                 <Modal.Header>
-                    Terms of Service
+                    <span className=' font-semibold'>Order No.</span> <span className=' font-normal'>{orders[_id]?.order}</span>
                 </Modal.Header>
                 <Modal.Body>
-                    <Table>
-                        <Table.Body className="divide-y">
-                            {Object.values(orders[_id]?.products)?.map((_product, index) => {
-                                const { product, quantity } = _product
-                                return (<Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                    <Table.Cell>
-                                        <img src={product?.image} width={80} height={60} alt="" className=' rounded-md' />
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                        <NavLink to={`/productDetails/${product?._id}`} className='text-blue-700'>{product?.title}</NavLink>
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                        {quantity}
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                        {product?.price} tk
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                        {product?.price * quantity} tk
-                                    </Table.Cell>
-                                </Table.Row>)
-                            })}
-                        </Table.Body>
-                    </Table>
-                    <div className='flex items-end justify-end'>
+                    <div className=' md:w-3/4 mx-auto p-4 shadow-md rounded-lg'>
+                        <div className=' flex flex-col px-2'>
+                            <div className=' pb-1 '>
+                                <p className=' font-medium'>Delivered to</p>
+                                <p>{orders[_id]?.name}</p>
+                                <p>{orders[_id]?.deliveredTo}</p>
+                            </div>
+                            <div className={`${divider}`}></div>
+                            <div className=' py-1'>
+                                {Object.values(orders[_id]?.products)?.map((_product, index) => {
+                                    return (
+                                        // grid grid-cols-order-item-mobile sm:grid-cols-order-item gap-3 pb-3
+                                        <div className='flex'>
+                                            <p className=' md:basis-1/9 basis-1/6'>{_product?.quantity}x</p>
+                                            <p className='md:basic-6/9 basis-3/4'> <NavLink to={`/productDetails/${_product?.product?._id}`} className=" text-blue-700">{_product?.product?.title}</NavLink></p>
 
-                        <div className="flex flex-col p-5 space-y-4 rounded shadow-xl w-fit h-fit ">
-                            <div className={`${style} font-medium md:font-semibold`}>
-                                <p>Subtotal :</p>
-                                <p>{orders[_id].amount - orders[_id]?.deliveryFee} tk</p>
+                                            <p className='text-right md:basis-2/9 basis-2/4'>Tk {_product?.quantity * _product?.price}</p>
+                                        </div>
+                                    )
+                                })}
                             </div>
-                            <div className={`${style}`}>
-                                <p>Shipping Fee :</p>
-                                <p>{orders[_id]?.deliveryFee} tk</p>
+                            <div className={`${divider}`}></div>
+                            <div className={`${blocksItem} pt-1`}>
+                                <p>Subtotal</p>
+                                <p>Tk {orders[_id]?.amount}</p>
                             </div>
-                            <div>
-                                <p className="border-b "></p>
+                            <div className={`${blocksItem}`}>
+                                <p>Delivery fee</p>
+                                <p>Tk {orders[_id]?.amount}</p>
                             </div>
-                            <div
-                                className={`${style} text-xl md:text-2xl font-medium md:font-bold`}
-                            >
-                                <p>Order Total :</p>
-                                <p>{orders[_id].amount} tk</p>
+                            <div className={`${blocksItem} pb-1`}>
+                                <p>Total</p>
+                                <p>Tk {orders[_id]?.amount}</p>
                             </div>
+                            <div className={`${divider}`}></div>
+                            <p className=' pt-1 font-medium'>Paid with</p>
+                            <div className={`${blocksItem}`}>
+                                <p>Cash on delivery</p>
+                                <p>Tk {orders[_id]?.amount}</p>
+                            </div>
+
                         </div>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={onClose}>
-                        Close
-                    </Button>
+                    <div className='flex w-full justify-end' >
+                        <Button onClick={onClose}>
+                            Close
+                        </Button>
+                    </div>
                 </Modal.Footer>
             </Modal>
         </>

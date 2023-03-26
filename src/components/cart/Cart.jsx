@@ -46,7 +46,7 @@ const Cart = () => {
               <p className="pb-3 border-t border-gray-300"></p>
               <div className="flex justify-between ">
                 <NavLink
-                  to="/product"
+                  to="/products"
                   className="px-3 py-2 text-white bg-gray-500 rounded hover:bg-gray-400"
                 >
                   Continue Shoping
