@@ -17,7 +17,7 @@ const Nav = () => {
         </div>
         <div className="flex space-x-8 ">
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/product">Product</NavLink>
+          <NavLink to="/products">Product</NavLink>
           <NavLink to="/history">History</NavLink>
           <NavLink to="/about">About</NavLink>
         </div>

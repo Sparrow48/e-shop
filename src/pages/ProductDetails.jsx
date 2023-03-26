@@ -43,7 +43,7 @@ const ProductDetails = () => {
     setValue(updateValue);
   };
 
-  const addTocard = () => {
+  const addToCard = () => {
     dispatch(
       addToCart({
         _id: product._id,
@@ -80,14 +80,14 @@ const ProductDetails = () => {
                 <p>SKU : {product.pId}</p>
                 <p className="border-b-2 border-gray-400"></p>
                 <div className="flex ml-2 text-3xl font-bold space-x-7">
-                  <button onClick={decrement}>-</button>
+                  <button disabled={value === 1} onClick={decrement} className=' disabled:opacity-25'>-</button>
                   <h2>{value}</h2>
-                  <button onClick={increment}>+</button>
+                  <button disabled={value === product?.available} onClick={increment} className=' disabled:opacity-25'>+</button>
                 </div>
                 <NavLink
                   to="/cart"
                   className="px-3 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-500 w-fit"
-                  onClick={addTocard}
+                  onClick={addToCard}
                 >
                   ADD TO CART
                 </NavLink>

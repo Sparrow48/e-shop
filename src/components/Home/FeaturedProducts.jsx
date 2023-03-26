@@ -37,7 +37,7 @@ const FeaturedProducts = () => {
             </div>
             <div className="lg:pt-6">
               <div className="px-3 py-2 mx-auto text-center text-white bg-yellow-600 rounded w-fit hover:bg-yellow-500 hover:text-gray-800">
-                <NavLink to="/product">All Products</NavLink>
+                <NavLink to="/products">All Products</NavLink>
               </div>
             </div>
           </div>

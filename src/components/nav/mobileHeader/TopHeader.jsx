@@ -3,6 +3,7 @@ import CP from '../../../assets/cp.png'
 import SFLogo from '../../../assets/e-shop.png'
 import { NavLink } from 'react-router-dom';
 import ProfileDropdown from '../ProfileDropdown';
+import Logo from '../Logo';
 
 
 
@@ -16,7 +17,7 @@ const TopHeader = () => {
                     {/* <div className=''>
                         <img src={SFLogo} width="40" height="45" alt="" />
                     </div> */}
-                    <p className='text-4xl font-semibold  text-white'>e-Shop</p>
+                    <p className='text-4xl font-semibold  text-white'><Logo /></p>
                 </NavLink>
                 <div className='flex items-center px-4'>
                     {isLoggedIn ?

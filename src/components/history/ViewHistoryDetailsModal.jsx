@@ -23,15 +23,15 @@ const ViewHistoryDetailsModal = ({ _id, visibleModal, toggleModal }) => {
                 onClose={onClose}
             >
                 <Modal.Header>
-                    #78458
+                    <span className=' font-semibold'>Order No.</span> <span className=' font-normal'>{orders[_id]?.order}</span>
                 </Modal.Header>
                 <Modal.Body>
                     <div className=' md:w-3/4 mx-auto p-4 shadow-md rounded-lg'>
                         <div className=' flex flex-col px-2'>
                             <div className=' pb-1 '>
-                                <p>Delivered to</p>
+                                <p className=' font-medium'>Delivered to</p>
                                 <p>{orders[_id]?.name}</p>
-                                <p>{orders[_id]?.address}</p>
+                                <p>{orders[_id]?.deliveredTo}</p>
                             </div>
                             <div className={`${divider}`}></div>
                             <div className=' py-1'>
@@ -61,9 +61,9 @@ const ViewHistoryDetailsModal = ({ _id, visibleModal, toggleModal }) => {
                                 <p>Tk {orders[_id]?.amount}</p>
                             </div>
                             <div className={`${divider}`}></div>
-                            <p className=' pt-1'>Paid with</p>
+                            <p className=' pt-1 font-medium'>Paid with</p>
                             <div className={`${blocksItem}`}>
-                                <p>cash on delivery</p>
+                                <p>Cash on delivery</p>
                                 <p>Tk {orders[_id]?.amount}</p>
                             </div>
 

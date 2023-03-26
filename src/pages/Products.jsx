@@ -27,8 +27,8 @@ const Product = () => {
         {show ? (
           Object.keys(updateProducts)?.length > 0 && (
             <div className="max-w-2xl divide-y lg:max-w-5xl">
-              <div className="flex justify-between lg:w-5xl">
-                <div className="px-3 pt-1 bg-gray-100 border rounded">
+              <div className="flex flex-col md:flex-row gap-3 justify-between lg:w-5xl pb-2">
+                <div className="px-3 w-fit pt-1 bg-gray-100 border rounded">
                   <h1>{Object.keys(updateProducts)?.length} Products Found.</h1>
                 </div>
 
