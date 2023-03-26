@@ -4,19 +4,25 @@ import FilterProducts from "../components/product/FilterProducts";
 import ProductItem from "../components/product/ProductItem";
 import FeaturedProducts from "../components/Home/FeaturedProducts";
 import { fetchProduct } from "../store/reducer/productSlice";
+import Skeleton from "../components/helper/Skeleton";
 
 const Product = () => {
 
   const dispatch = useDispatch()
-  const { updateProducts, products, show = true } = useSelector(
-    (state) => state.product
-  );
+  const { updateProducts, products, show = true, fetchProductStatus } = useSelector(state => state.product);
 
   useEffect(() => {
     if (Object.keys(products)?.length <= 0) {
       dispatch(fetchProduct())
     }
   }, [])
+
+
+  if (fetchProductStatus === 'loading') {
+    return (
+      <Skeleton />
+    )
+  }
 
   return (
     <div>

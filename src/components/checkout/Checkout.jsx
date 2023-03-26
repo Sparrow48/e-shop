@@ -6,10 +6,12 @@ import PhoneFormItem from "../Form/PhoneFormItem";
 import { debounce } from "../../utils/Debounce";
 import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
+import Skeleton from "../helper/Skeleton";
 
 const Checkout = (props) => {
   const { totalPrice, totalQuantity, items } = useSelector((state) => state.product);
   const { user } = useSelector((state) => state.user);
+  const { createOrderStatus } = useSelector((state) => state.order);
 
   const [username, setUsername] = useState("");
   const [address, setAddress] = useState("");
@@ -71,6 +73,11 @@ const Checkout = (props) => {
   const optimize_NameHandler = debounce(nameHandler, 500);
   const optimize_addressHandler = debounce(addressHandler, 500);
 
+  if (createOrderStatus === 'loading') {
+    return (
+      <Skeleton />
+    )
+  }
 
   return (
     <div className="max-w-2xl py-16 mx-5 lg:mx-auto md:max-w-4xl lg:max-w-6xl ">
@@ -136,7 +143,7 @@ const Checkout = (props) => {
             </form>
           </div>
         </div>
-        <div>
+        <div className=" pt-10 md:pt-0">
           <CheckOutDetails
             totalQuantity={totalQuantity}
             totalPrice={totalPrice}

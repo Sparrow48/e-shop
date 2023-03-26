@@ -2,11 +2,12 @@ import { Button, Card, ListGroup, Table } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUserOrders } from '../store/reducer/userSlice'
+import { fetchUserOrders } from '../store/reducer/orderSlice'
 import ViewHistoryDetailsModal from '../components/history/ViewHistoryDetailsModal'
+import Skeleton from '../components/helper/Skeleton'
 
 const History = () => {
-    const { orders } = useSelector(state => state.user)
+    const { orders, fetchOrderStatus } = useSelector(state => state.order)
 
     const [visibleModal, setVisibleModal] = useState(false)
     const [productId, setProductId] = useState('')
@@ -27,6 +28,13 @@ const History = () => {
         setProductId(id)
         toggleModal()
     }
+
+    if (fetchOrderStatus === 'loading') {
+        return (
+            <Skeleton />
+        )
+    }
+
     return (
         <div className='max-w-2xl px-10 py-16 mx-auto lg:px-0 md:max-w-3xl lg:max-w-4xl xl:max-w-6xl'>
             {visibleModal && <ViewHistoryDetailsModal _id={productId} visibleModal={visibleModal} toggleModal={toggleModal} />}
@@ -53,10 +61,10 @@ const History = () => {
                         {Object.values(orders)?.map((order, index) => {
                             return (<Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                 <Table.Cell>
-                                    #{order?.order}
+                                    #{order?.order}{index}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {moment(order?.createdAt).format('ll')}
+                                    {moment(order?.createdAt).format('lll')}
                                 </Table.Cell>
                                 <Table.Cell>
                                     {order?.deliveryStatus}
@@ -82,11 +90,11 @@ const History = () => {
                                 <ul className=' flex flex-col w-full'>
                                     <li className='flex justify-between border-b-2'>
                                         <p className=' pl-4 py-2'>ORDER NO</p>
-                                        <p className=' pr-4 py-2'>#{order?.order}</p>
+                                        <p className=' pr-4 py-2'>#{order?.order}{index}</p>
                                     </li>
                                     <li className='flex justify-between border-b-2'>
                                         <p className=' pl-4 py-2'>ORDER DATE</p>
-                                        <p className=' pr-4 py-2'>{moment(order?.createdAt).format('ll')}</p>
+                                        <p className=' pr-4 py-2'>{moment(order?.createdAt).format('lll')}</p>
                                     </li>
                                     <li className='flex justify-between border-b-2'>
                                         <p className=' pl-4 py-2'>ORDER STATUS</p>
@@ -100,6 +108,7 @@ const History = () => {
                                 <Button onClick={() => viewDetailsHandler(order._id)}>
                                     Details
                                 </Button>
+
                             </div>)
 
                         })

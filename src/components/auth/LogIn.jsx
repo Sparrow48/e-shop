@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { debounce } from "../../utils/Debounce";
 import { userLogin } from "./../../store/reducer/AuthSlice";
 import PhoneFormItem from "../Form/PhoneFormItem";
+import { Button, Spinner } from "flowbite-react";
 
 const LogIn = () => {
+
+  const { loginStatus } = useSelector(state => state.auth)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isUsernameValid, setUsernameValidation] = useState(false)
@@ -106,9 +109,22 @@ const LogIn = () => {
               </div>
             </div>
             <div className="w-full px-3 mb-6 md:w-full">
-              <button disabled={!isUsernameValid} className="block w-full px-3 py-3 font-bold leading-tight text-gray-100 bg-blue-600 border border-gray-200 rounded-lg appearance-none hover:bg-blue-500 focus:outline-none active:bg-white focus:border-gray-500 disabled:bg-gray-500 disabled:opacity-25">
-                Sign in
-              </button>
+              {loginStatus === 'loading' ?
+                <button disabled={!isUsernameValid} className="block w-full px-3 py-3 font-bold leading-tight text-gray-100 bg-blue-600 border border-gray-200 rounded-lg appearance-none hover:bg-blue-500 focus:outline-none active:bg-white focus:border-gray-500 disabled:bg-gray-500 disabled:opacity-25">
+                  <Spinner aria-label="Spinner button example" />
+                  <span className="pl-3">
+                    Sign in
+                  </span>
+                </button> :
+                <button disabled={!isUsernameValid} className="block w-full px-3 py-3 font-bold leading-tight text-gray-100 bg-blue-600 border border-gray-200 rounded-lg appearance-none hover:bg-blue-500 focus:outline-none active:bg-white focus:border-gray-500 disabled:bg-gray-500 disabled:opacity-25">
+                  Sign in
+                </button>
+              }
+            </div>
+            <div className=" flex text-xs flex-col w-full justify-center items-center text-left p-4 shadow-md bg-gray-50">
+              <p>Test Access</p>
+              <p>Username: 01640790048</p>
+              <p>Password : Nasib1234</p>
             </div>
           </div>
         </form>

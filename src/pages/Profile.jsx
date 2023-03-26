@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import { Card, Dropdown } from 'flowbite-react'
 import CP from './../assets/cp.png'
 import { useDispatch, useSelector } from 'react-redux'
+import Skeleton from '../components/helper/Skeleton'
 import { fetchUserProfile } from '../store/reducer/userSlice'
 
 const Profile = () => {
 
-    const { user } = useSelector(state => state.user)
+    const { user, fetchProfileStatus } = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -14,6 +15,16 @@ const Profile = () => {
             dispatch(fetchUserProfile())
         }
     }, [])
+
+    if (fetchProfileStatus === 'loading') {
+        return (
+            <>
+                <div role="status" className="max-w-sm mx-auto md:pt-28 animate-pulse">
+                    <Skeleton />
+                </div>
+            </>
+        )
+    }
 
     return (
         <div className="max-w-sm mx-auto md:pt-10">

@@ -3,10 +3,11 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ShowProduct from "./ShowProduct";
 import { fetchProduct } from "../../store/reducer/productSlice";
+import Skeleton from "../helper/Skeleton";
 
 const FeaturedProducts = () => {
 
-  const { products } = useSelector(state => state.product)
+  const { products, fetchProductStatus } = useSelector(state => state.product)
 
   const dispatch = useDispatch()
 
@@ -16,6 +17,12 @@ const FeaturedProducts = () => {
       dispatch(fetchProduct())
     }
   }, [])
+
+  if (fetchProductStatus === 'loading') {
+    return (
+      <Skeleton />
+    )
+  }
 
   return (
     <div>

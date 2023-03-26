@@ -4,6 +4,7 @@ import { instance } from '../../utils/AxiosInstance'
 const initialState = {
     products: {},
     updateProducts: {},
+    fetchProductStatus: '',
     items: JSON.parse(localStorage.getItem("cart")) || [],
     totalQuantity: JSON.parse(localStorage.getItem("total")) || 0,
     totalPrice: JSON.parse(localStorage.getItem("totalPrice")) || 0,
@@ -115,16 +116,20 @@ const productSlice = createSlice({
         },
     },
     extraReducers: {
+        [fetchProduct.pending]: (state, action) => {
+            state.fetchProductStatus = 'loading'
+        },
         [fetchProduct.fulfilled]: (state, action) => {
             action.payload.map((product) => {
                 state.products[product?._id] = product
             })
 
             state.updateProducts = state.products
+            state.fetchProductStatus = 'succeeded'
 
         },
         [fetchProduct.rejected]: (state, action) => {
-
+            state.fetchProductStatus = 'failed'
         },
 
     },

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from '../../utils/AxiosInstance'
 
 let initialState = {
+  loginStatus: ''
 
 }
 
@@ -39,11 +40,14 @@ const AuthSlice = createSlice({
   reducers: {
   },
   extraReducers: {
+    [userLogin.pending]: (state, action) => {
+      state.loginStatus = 'loading'
+    },
     [userLogin.fulfilled]: (state, action) => {
-
+      state.loginStatus = 'succeeded'
     },
     [userLogin.rejected]: (state, action) => {
-
+      state.loginStatus = 'failed'
     },
 
   },

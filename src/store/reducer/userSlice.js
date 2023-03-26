@@ -3,7 +3,7 @@ import { instance } from '../../utils/AxiosInstance'
 
 let initialState = {
     user: {},
-    orders: {}
+    fetchProfileStatus: '',
 }
 
 export const fetchUserProfile = createAsyncThunk(
@@ -18,17 +18,7 @@ export const fetchUserProfile = createAsyncThunk(
     }
 )
 
-export const fetchUserOrders = createAsyncThunk(
-    'user/fetchUserOrders',
-    async () => {
-        try {
-            const response = await instance.get('/user/purchase-history')
-            return response.data;
-        } catch (error) {
-            return Promise.reject(error)
-        }
-    }
-)
+
 
 
 const userSlice = createSlice({
@@ -37,20 +27,18 @@ const userSlice = createSlice({
     reducers: {
     },
     extraReducers: {
+        [fetchUserProfile.pending]: (state, action) => {
+            state.fetchProfileStatus = 'loading'
+        },
         [fetchUserProfile.fulfilled]: (state, action) => {
             state.user = action.payload
+            state.fetchProfileStatus = 'succeeded'
+
         },
         [fetchUserProfile.rejected]: (state, action) => {
+            state.fetchProfileStatus = 'failed'
+        },
 
-        },
-        [fetchUserOrders.fulfilled]: (state, action) => {
-            action.payload.map((order) => {
-                state.orders[order?._id] = order
-            })
-        },
-        [fetchUserOrders.rejected]: (state, action) => {
-
-        },
 
     },
 });
