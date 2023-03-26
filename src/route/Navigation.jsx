@@ -30,7 +30,7 @@ const Navigation = () => {
                 <Routes>
                     <Route path={'/profile'} element={<Profile />} />
                     <Route path={'/history'} element={<History />} />
-                    <Route path={'/track-order'} element={<TrackOrder />} />
+                    <Route path={'/track-order'} element={<ComingSoon />} />
                     <Route path={'/dashboard'} element={<ComingSoon />} />
                     <Route path={'/settings'} element={<ComingSoon />} />
                 </Routes>

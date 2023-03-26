@@ -44,7 +44,7 @@ const Checkout = (props) => {
 
       let payload = {
         name,
-        address,
+        deliveredTo: address,
         phone: username,
         products,
         deliveryFee: 1200,
