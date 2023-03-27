@@ -82,7 +82,7 @@ const History = () => {
                     </Table.Body>
                 </Table>
             </div>
-            <div className='md:invisible'>
+            <div className='md:hidden'>
                 <div className=' flex flex-col gap-5'>
                     {
                         Object.values(orders)?.map((order, index) => {

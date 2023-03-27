@@ -45,6 +45,7 @@ const Navigation = () => {
             <Routes>
                 <Route exact path={'/login'} element={<LogIn />} />
                 <Route exact path={'/signup'} element={<SignUp />} />
+                <Route exact path={'/*'} element={<LogIn />} />
 
             </Routes>
         </div>

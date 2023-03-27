@@ -40,7 +40,7 @@ const FilterProducts = () => {
   return (
     <div>
       <div>
-        <div className="w-full mb-6 md:mb-0">
+        <div className="w-full mb-0 md:mb-0">
           <input
             className="block w-full px-4 py-2 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-city"

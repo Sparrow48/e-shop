@@ -23,15 +23,16 @@ instance.interceptors.response.use(
     },
     error => {
         if (
-            error?.response?.status === 401 &&
+            error?.response?.status === 403 ||
             error?.response?.data?.message === 'You are not logged in'
         ) {
-            toastr.error(error?.response?.data?.errors?.title);
+            toastr.error('You are not loggedIn.');
             localStorage.clear();
-            window.location.replace('/');
+            window.location.replace('/login');
         } else if (error.code === 'ERR_NETWORK') {
             toastr.error('Internet connection lost!');
         } else {
+
             const err = error?.response?.data;
             toastr.error(err?.title || err?.message || 'Something went wrong');
         }
