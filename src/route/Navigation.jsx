@@ -9,6 +9,7 @@ import { fetchUserProfile } from '../store/reducer/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import TrackOrder from '../pages/TrackOrder';
 import ComingSoon from '../pages/ComingSoon';
+import Home from '../pages/Home';
 
 
 const Navigation = () => {
@@ -33,6 +34,7 @@ const Navigation = () => {
                     <Route path={'/track-order'} element={<ComingSoon />} />
                     <Route path={'/dashboard'} element={<ComingSoon />} />
                     <Route path={'/settings'} element={<ComingSoon />} />
+                    <Route exact path={'/*'} element={<CommonRoute />} />
                 </Routes>
             </>
 
@@ -41,13 +43,13 @@ const Navigation = () => {
 
     return (
         <div>
-            <CommonRoute />
             <Routes>
+                <Route path={'/history'} element={<LogIn />} />
                 <Route exact path={'/login'} element={<LogIn />} />
                 <Route exact path={'/signup'} element={<SignUp />} />
-                <Route exact path={'/*'} element={<LogIn />} />
-
+                <Route exact path={'/*'} element={<CommonRoute />} />
             </Routes>
+
         </div>
     );
 };

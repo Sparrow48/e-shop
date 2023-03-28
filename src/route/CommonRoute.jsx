@@ -12,12 +12,12 @@ const CommonRoute = () => {
     return (
         <div>
             <Routes>
-                <Route exact path={'/'} element={<Home />} />
                 <Route exact path={'/about'} element={<AboutUs />} />
                 <Route exact path={'/products'} element={<Product />} />
                 <Route exact path={'/productDetails/:_id'} element={<ProductDetails />} />
                 <Route exact path={'/cart'} element={<Cart />} />
                 <Route exact path={'/checkout'} element={<Checkout />} />
+                <Route exact path={'/*'} element={<Home />} />
             </Routes>
         </div>
     )
