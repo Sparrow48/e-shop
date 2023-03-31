@@ -27,7 +27,6 @@ const Navigation = () => {
     if (loggedIn) {
         return (
             <>
-                <CommonRoute />
                 <Routes>
                     <Route path={'/profile'} element={<Profile />} />
                     <Route path={'/history'} element={<History />} />
