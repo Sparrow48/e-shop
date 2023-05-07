@@ -22,7 +22,6 @@ const TopHeader = () => {
                 <div className='flex items-center px-4'>
                     {isLoggedIn ?
                         <ProfileDropdown />
-
                         :
                         <div>
                             <NavLink to='/login' className='text-white p-2  font-medium'>Log In</NavLink>

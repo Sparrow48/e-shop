@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Avatar, Dropdown } from 'flowbite-react'
-import CP from './../../assets/cp.png'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { generateImageURL } from '../../utils/constant';
 
 const ProfileDropdown = () => {
     const { user } = useSelector(state => state.user)
+    const [file, setFile] = useState();
+
+    useEffect(() => {
+        const myUrl = generateImageURL(user?.profilePicture)
+        setFile(myUrl)
+    }, [user])
 
     const dispatch = useDispatch();
 
@@ -20,7 +26,7 @@ const ProfileDropdown = () => {
                 <Dropdown
                     arrowIcon={false}
                     inline={true}
-                    label={<Avatar alt="User settings" img={CP} rounded={true} />}
+                    label={<Avatar alt="User settings" img={file} rounded={true} />}
                 >
                     <Dropdown.Header>
                         <span className="block text-sm">
