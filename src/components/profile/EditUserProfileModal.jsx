@@ -4,20 +4,26 @@ import { useState } from 'react';
 import { debounce } from '../../utils/Debounce';
 import { uploadImage } from '../../store/reducer/FileSystemSlice';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { generateImageURL } from '../../utils/constant'; import { useForm } from "react-hook-form";
 
-const EditUserProfileModal = ({ visibleModal }) => {
+
+const EditUserProfileModal = ({ visibleModal, toggleEditProfileModal, profileData }) => {
 
     const [file, setFile] = useState();
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [address, setAddress] = useState('')
 
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        const myUrl = generateImageURL('eShop/ytxq22cirm6tvj0aulnj')
+        setFile(myUrl)
+    }, [])
+
+
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
     function handleChange(e) {
         console.log(e.target.files[0]);
-        // setFile(URL.createObjectURL(e.target.files[0]));
         const _file = e.target.files[0]
         const reader = new FileReader();
         reader.readAsDataURL(_file);
@@ -27,11 +33,12 @@ const EditUserProfileModal = ({ visibleModal }) => {
     }
 
     const onClose = () => {
-        // toggleModal()
+        toggleEditProfileModal()
     }
 
-    const submitHandler = async (e) => {
-        e.preventDefault();
+    const submitHandler = async (value) => {
+        const { name, email, address } = value
+
         let payload = {
             name,
             address,
@@ -48,21 +55,6 @@ const EditUserProfileModal = ({ visibleModal }) => {
         console.log(payload);
     }
 
-    const nameHandler = (event) => {
-        setName(event.target.value);
-    };
-
-    const emailHandler = (event) => {
-        setEmail(event.target.value);
-    };
-
-    const addressHandler = (event) => {
-        setAddress(event.target.value);
-    };
-
-    const optimize_NameHandler = debounce(nameHandler, 500);
-    const optimize_EmailHandler = debounce(emailHandler, 500);
-    const optimize_AddressHandler = debounce(addressHandler, 500);
     return (
         <>
             <Modal
@@ -73,7 +65,7 @@ const EditUserProfileModal = ({ visibleModal }) => {
                     <span className=' font-semibold'>Edit Profile</span>
                 </Modal.Header>
                 <Modal.Body>
-                    <form className="flex flex-col gap-4" onSubmit={(e) => submitHandler(e)}>
+                    <form className="flex flex-col gap-4" onSubmit={handleSubmit(submitHandler)}>
 
                         <div className='flex w-full gap-3 justify-center' >
                             <div className=' flex flex-col gap-3 justify-center text-center'>
@@ -83,10 +75,11 @@ const EditUserProfileModal = ({ visibleModal }) => {
                                     size="xl"
                                     img={file}
                                 />
+
                                 <div>
 
                                     <input class="hidden" type="file" id='upload_file' onChange={handleChange} />
-                                    <label className='px-4 py-2 bg-gray-300 rounded cursor-pointer	' for='upload_file'>Upload</label>
+                                    <label className='px-4 py-2 bg-gray-300 rounded cursor-pointer	' for='upload_file'>Chose Image</label>
                                 </div>
                             </div>
 
@@ -101,11 +94,11 @@ const EditUserProfileModal = ({ visibleModal }) => {
                                     />
                                 </div>
                                 <TextInput
-                                    id="base"
-                                    type="text"
-                                    sizing="md"
-                                    value='Nasib'
+                                    {...register("name", { required: true })}
+                                    aria-invalid={errors.name ? "true" : "false"}
+                                    defaultValue={profileData?.name}
                                 />
+                                {errors.name?.type === 'required' && <p role="alert">First name is required</p>}
                             </div>
                             <div>
                                 <div className="mb-2 block">
@@ -115,13 +108,11 @@ const EditUserProfileModal = ({ visibleModal }) => {
                                     />
                                 </div>
                                 <TextInput
-                                    id="email2"
-                                    type="email"
-                                    placeholder="name@email.com"
-                                    required={true}
-                                    shadow={true}
-                                    value='a@a.com'
+                                    {...register("email", { required: "Email Address is required" })}
+                                    aria-invalid={errors.email ? "true" : "false"}
+                                    defaultValue={profileData?.email}
                                 />
+                                {errors.email && <p role="alert">{errors.email?.message}</p>}
                             </div>
                             <div id="textarea">
                                 <div className="mb-2 block">
@@ -131,12 +122,11 @@ const EditUserProfileModal = ({ visibleModal }) => {
                                     />
                                 </div>
                                 <Textarea
-                                    id="comment"
-                                    placeholder="Input your address..."
-                                    required={true}
-                                    rows={3}
-                                    value='address'
+                                    {...register("address", { required: "Email Address is required" })}
+                                    aria-invalid={errors.address ? "true" : "false"}
+                                    defaultValue={profileData?.address}
                                 />
+                                {errors.address && <p role="alert">{errors.address?.message}</p>}
                             </div>
                         </div>
                         <div className='flex w-full gap-3 justify-end' >
@@ -148,6 +138,7 @@ const EditUserProfileModal = ({ visibleModal }) => {
                             </Button>
                         </div>
                     </form>
+
                 </Modal.Body>
 
             </Modal>

@@ -10,7 +10,6 @@ export const uploadImage = createAsyncThunk(
     async (payload) => {
         try {
             const response = await instance.post('/upload/image', payload)
-            console.log(response);
             return response.data;
         } catch (error) {
             return Promise.reject(error)
