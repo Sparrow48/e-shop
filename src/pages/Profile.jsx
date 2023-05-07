@@ -12,6 +12,7 @@ const Profile = () => {
     const { user, fetchProfileStatus } = useSelector(state => state.user)
     const dispatch = useDispatch()
     const [isVisible, setVisible] = useState(false)
+    const cloudName = import.meta.env.VITE_CLOUDINARY_NAME;
 
     useEffect(() => {
         if (Object.keys(user).length <= 0) {
@@ -39,7 +40,7 @@ const Profile = () => {
             <div className="max-w-sm mx-auto md:pt-10">
                 <Card>
                     <div className="flex flex-col items-center pb-10">
-                        <Image className="mb-3 h-24 w-24 rounded-full shadow-lg" cloudName="dusn7ts3z" publicId="eShop/ytxq22cirm6tvj0aulnj" />
+                        <Image className="mb-3 h-24 w-24 rounded-full shadow-lg" cloudName={cloudName} publicId={user?.profilePicture} />
 
                         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                             {user?.name}

@@ -1,35 +1,47 @@
 import React from 'react'
 import { Avatar, Button, FileInput, Label, Modal, TextInput, Textarea } from 'flowbite-react'
 import { useState } from 'react';
-import { debounce } from '../../utils/Debounce';
 import { uploadImage } from '../../store/reducer/FileSystemSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { generateImageURL } from '../../utils/constant'; import { useForm } from "react-hook-form";
+import { generateImageURL } from '../../utils/constant';
+import { useForm } from "react-hook-form";
+import { updateUserProfile } from '../../store/reducer/userSlice';
+import Compressor from 'compressorjs';
+import Loader from '../loader/Loader';
 
 
 const EditUserProfileModal = ({ visibleModal, toggleEditProfileModal, profileData }) => {
 
     const [file, setFile] = useState();
+    const [loading, setLoading] = useState(false)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const myUrl = generateImageURL('eShop/ytxq22cirm6tvj0aulnj')
+        const myUrl = generateImageURL(profileData?.profilePicture)
         setFile(myUrl)
     }, [])
 
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    function handleChange(e) {
+    const handleChange = async (e) => {
         console.log(e.target.files[0]);
         const _file = e.target.files[0]
-        const reader = new FileReader();
-        reader.readAsDataURL(_file);
-        reader.onloadend = () => {
-            setFile(reader.result);
-        };
+        new Compressor(_file, {
+            quality: 0.8, // 0.6 can also be used, but its not recommended to go below.
+            success: (compressedResult) => {
+                // compressedResult has the compressed file.
+                // Use the compressed file to upload the images to your server. 
+                const reader = new FileReader();
+                reader.readAsDataURL(compressedResult);
+                reader.onloadend = () => {
+                    setFile(reader.result);
+                };
+            },
+        });
+
     }
 
     const onClose = () => {
@@ -37,22 +49,35 @@ const EditUserProfileModal = ({ visibleModal, toggleEditProfileModal, profileDat
     }
 
     const submitHandler = async (value) => {
-        const { name, email, address } = value
+        try {
+            setLoading(true)
+            const { name, email, address } = value
 
-        let payload = {
-            name,
-            address,
-            email
-        }
-        const response = await dispatch(uploadImage({ file }))
-        if (response.payload) {
-            payload = {
-                ...payload,
-                image: response.payload.key
+            let payload = {
+                name,
+                address,
+                email
             }
+            const response = await dispatch(uploadImage({ file }))
+            if (response.payload) {
+                payload = {
+                    ...payload,
+                    profilePicture: response.payload.key
+                }
+            }
+            await dispatch(updateUserProfile(payload))
+            toggleEditProfileModal()
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            console.error("EDIT_PROFILE_ERROR => ", error);
         }
+    }
 
-        console.log(payload);
+    if (loading) {
+        return (
+            <Loader visibleModal={visibleModal} toggleModal={toggleEditProfileModal} />
+        )
     }
 
     return (
@@ -138,7 +163,6 @@ const EditUserProfileModal = ({ visibleModal, toggleEditProfileModal, profileDat
                             </Button>
                         </div>
                     </form>
-
                 </Modal.Body>
 
             </Modal>
