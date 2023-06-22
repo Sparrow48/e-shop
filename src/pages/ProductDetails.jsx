@@ -74,10 +74,9 @@ const ProductDetails = () => {
                 <h1 className="text-4xl font-bold">{product.title}</h1>
                 <h2 className="text-xl text-yellow-600">{product.price} tk</h2>
                 <p className="leading-8 text-gray-600">{product.description}</p>
-                <p>Available : In Stock ({product.available})</p>
-                <p>Category : {product.category}</p>
-                <p>Brand : {product.brand}</p>
-                <p>SKU : {product.pId}</p>
+                <p className=" font-bold">Brand : {product.brand}</p>
+                <p className=" font-bold">Category : {product.category}</p>
+                <p className=" font-bold">Available : In Stock <span className=" text-yellow-600">({product.available})</span></p>
                 <p className="border-b-2 border-gray-400"></p>
                 <div className="flex ml-2 text-3xl font-bold space-x-7">
                   <button disabled={value === 1} onClick={decrement} className=' disabled:opacity-25'>-</button>
