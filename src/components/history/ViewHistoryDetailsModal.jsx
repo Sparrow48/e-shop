@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Modal, Table } from 'flowbite-react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import moment from 'moment'
 
 const ViewHistoryDetailsModal = ({ _id, visibleModal, toggleModal }) => {
     const { orders } = useSelector(state => state.order)
@@ -23,7 +24,7 @@ const ViewHistoryDetailsModal = ({ _id, visibleModal, toggleModal }) => {
                 onClose={onClose}
             >
                 <Modal.Header>
-                    <span className=' font-semibold'>Order No.</span> <span className=' font-normal'>{orders[_id]?.order}</span>
+                    <span className=' font-semibold'>Order Date :  </span> <span className=' font-normal'>{moment(orders[_id]?.createdAt).format('ll')}</span>
                 </Modal.Header>
                 <Modal.Body>
                     <div className=' md:w-3/4 mx-auto p-4 shadow-md rounded-lg'>

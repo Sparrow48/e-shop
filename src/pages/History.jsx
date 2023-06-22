@@ -42,9 +42,6 @@ const History = () => {
                 <Table>
                     <Table.Head>
                         <Table.HeadCell>
-                            Order No
-                        </Table.HeadCell>
-                        <Table.HeadCell>
                             Order Date
                         </Table.HeadCell>
                         <Table.HeadCell>
@@ -60,9 +57,6 @@ const History = () => {
                     <Table.Body className="divide-y">
                         {Object.values(orders)?.map((order, index) => {
                             return (<Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                <Table.Cell>
-                                    #{order?.order}{index}
-                                </Table.Cell>
                                 <Table.Cell>
                                     {moment(order?.createdAt).format('lll')}
                                 </Table.Cell>
@@ -89,11 +83,7 @@ const History = () => {
                             return (<div className=' border-2 shadow-md flex flex-col gap-3 justify-center items-center pb-2 rounded-md'>
                                 <ul className=' flex flex-col w-full'>
                                     <li className='flex justify-between border-b-2'>
-                                        <p className=' pl-4 py-2'>ORDER NO</p>
-                                        <p className=' pr-4 py-2'>#{order?.order}{index}</p>
-                                    </li>
-                                    <li className='flex justify-between border-b-2'>
-                                        <p className=' pl-4 py-2'>ORDER DATE</p>
+                                        <p className=' pl-4 py-2'> DATE</p>
                                         <p className=' pr-4 py-2'>{moment(order?.createdAt).format('lll')}</p>
                                     </li>
                                     <li className='flex justify-between border-b-2'>
